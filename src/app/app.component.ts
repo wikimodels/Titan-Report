@@ -6,8 +6,10 @@ import {
   NavigationError,
   Router,
 } from '@angular/router';
-import { IsLoadingService } from '@service-work/is-loading';
+import { IsLoadingService } from '@service-work/is-loading/is-loading/is-loading.service';
+
 import { QID } from 'consts/urls.consts';
+
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { QuestionnaireService } from './services/questionnaire.service';
@@ -42,7 +44,7 @@ export class AppComponent implements OnInit {
       .subscribe((event) => {
         // If it's the start of navigation, `add()` a loading indicator
         if (event instanceof NavigationStart) {
-          // this.isLoadingService.add();
+          //this.isLoadingService.add();
           return;
         }
         // Else navigation has ended, so `remove()` a loading indicator

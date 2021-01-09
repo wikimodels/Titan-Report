@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { RespondentsComponent } from './respondents/respondents.component';
 import { MongodbChartComponent } from './mongodb-chart/mongodb-chart.component';
+import { MongoPipe } from './pipes/mongo.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MongodbChartComponent } from './mongodb-chart/mongodb-chart.component';
     MenuComponent,
     RespondentsComponent,
     MongodbChartComponent,
+    MongoPipe,
   ],
   imports: [
     BrowserModule,

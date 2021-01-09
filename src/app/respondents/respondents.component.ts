@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RespondentsCharts } from './../../../consts/chartDisplays/respondents-charts';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
@@ -8,15 +9,10 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class RespondentsComponent implements OnInit {
   constructor(private deviceService: DeviceDetectorService) {}
-  width: number;
-  height: number;
-  ngOnInit(): void {
-    if (this.deviceService.isMobile()) {
-      this.width = window.innerWidth;
-      this.height = this.width;
-    } else {
-      this.width = 640;
-      this.height = 480;
-    }
-  }
+  chart = new RespondentsCharts(this.deviceService);
+  osVersions = this.chart.OS_VERSIONS_CHART();
+  devicesTypes = this.chart.DEVICES_TYPES();
+  map = this.chart.MAP();
+
+  ngOnInit(): void {}
 }

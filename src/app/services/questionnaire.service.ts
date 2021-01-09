@@ -12,8 +12,9 @@ import {
   Questionnaire,
   QuestionType,
 } from 'src/models/questionnaire.model';
-import { GET_QUESTIONNAIRE_BY_QID } from 'consts/urls.consts';
+
 import { IsLoadingService } from '@service-work/is-loading';
+import { GET_QUESTIONNAIRE_BY_QID } from 'consts/urls.consts';
 
 const formatDisplayDate = 'DD-MM-YY';
 const formatDisplayTime = 'HH:mm';

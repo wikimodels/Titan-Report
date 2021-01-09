@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { getChartUrl } from '../../../consts/chartDisplays/chart-url';
+import { getChartUrl } from '../../../consts/chart-url';
 @Pipe({
   name: 'mongo',
 })

@@ -13,6 +13,7 @@ import { MenuComponent } from './menu/menu.component';
 import { RespondentsComponent } from './respondents/respondents.component';
 import { MongodbChartComponent } from './mongodb-chart/mongodb-chart.component';
 import { MongoPipe } from './pipes/mongo.pipe';
+import { DataTableComponent } from './respondents/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MongoPipe } from './pipes/mongo.pipe';
     RespondentsComponent,
     MongodbChartComponent,
     MongoPipe,
+    DataTableComponent,
   ],
   imports: [
     BrowserModule,

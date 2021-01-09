@@ -1,0 +1,18 @@
+{
+
+    "groupedRespondentsApi": {
+      "groupedRespondents": [],
+      "groupedRespondentsCount": 0
+    },
+
+    "sortChange": {
+                    "previousPageIndex": 0,
+                    "pageIndex": 0,
+                    "pageSize":10,
+                    "length": 0
+                  },
+    "sortedItem" : {
+                    "active": "country",
+                    "direction": "desc"
+                  }
+}

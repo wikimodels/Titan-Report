@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RespondentsCharts } from './../../../consts/chartDisplays/respondents-charts';
+import { RespondentsChartsService } from '../services/chart-displays/respondents-charts.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
@@ -8,11 +8,13 @@ import { DeviceDetectorService } from 'ngx-device-detector';
   styleUrls: ['./respondents.component.css'],
 })
 export class RespondentsComponent implements OnInit {
-  constructor(private deviceService: DeviceDetectorService) {}
-  chart = new RespondentsCharts(this.deviceService);
-  osVersions = this.chart.OS_VERSIONS_CHART();
-  devicesTypes = this.chart.DEVICES_TYPES();
-  map = this.chart.MAP();
+  constructor(private chartServcie: RespondentsChartsService) {}
 
-  ngOnInit(): void {}
+  osVersions = this.chartServcie.OS_VERSIONS_CHART();
+  devicesTypes = this.chartServcie.DEVICES_TYPES();
+  map = this.chartServcie.MAP();
+
+  ngOnInit(): void {
+    this.chartServcie.getGroupedRespondents();
+  }
 }

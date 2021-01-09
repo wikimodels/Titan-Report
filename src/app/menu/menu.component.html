@@ -1,0 +1,24 @@
+<ng-container *ngIf="questionnaireService.questionnaireSubj$ |async">
+  <mat-list>
+    <mat-list-item matRipple (click)="goToRespondents()">
+      <h3 matLine> Данные о респондентах</h3>
+      <p matLine>
+        <span>Геолокация, устройство входа и т.д.</span>
+      </p>
+    </mat-list-item>
+    <mat-list-item *ngFor="let q of (questionnaireService.questionnaireSubj$ |async).questions" matRipple>
+      <h3 matLine> Вопрос {{q.question_id}}</h3>
+      <p matLine>
+        <span> {{q.question_text}} </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+  <!-- <mat-nav-list>
+    <mat-list-item *ngFor="let q of (questionnaireService.questionnaireSubj$ |async).questions">
+      <a matLine href="javascript:void(0)">{{ q.question_text }}</a>
+      <button mat-icon-button>
+        <mat-icon>info</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-nav-list> -->
+</ng-container>

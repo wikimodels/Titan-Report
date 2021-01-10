@@ -112,5 +112,5 @@ export class DataTableComponent implements OnInit, AfterViewInit {
       (column) => column !== removedColumn
     );
     return myColumns;
-  }
+  } //TODO:
 }

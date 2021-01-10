@@ -38,7 +38,7 @@ export class RespondentsChartsService {
       chartId,
       window.innerWidth,
       window.innerWidth,
-      560,
+      500,
       400
     );
   }
@@ -48,14 +48,20 @@ export class RespondentsChartsService {
       chartId,
       window.innerWidth,
       window.innerWidth,
-      560,
+      500,
       400
     );
   }
 
   MAP() {
     const chartId = '014963e6-a416-4d5c-a045-70eeee471be5';
-    return this.getChartObj(chartId, window.innerWidth, 500, 1260, 400);
+    return this.getChartObj(
+      chartId,
+      window.innerWidth,
+      500,
+      0.8 * window.innerWidth,
+      700
+    );
   }
 
   getGroupedRespondents() {

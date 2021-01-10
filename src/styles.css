@@ -20,3 +20,32 @@ body {
   width: 100%;
   height: 50px;
 }
+
+.w-40 {
+  max-width: 40px;
+}
+.data-table {
+  width: 340px;
+}
+/* NEW STYLES - SMALL SCREENS */
+@media screen and (max-width: 499px) {
+  .small-column {
+    max-width: 40px;
+  }
+  .data-table {
+    width: 100vw;
+  }
+}
+
+/* NEW STYLES - LARGE SCREENS */
+@media screen and (min-width: 500px) {
+  .small-column {
+    max-width: 70px;
+  }
+  .data-table {
+    width: 80vw;
+  }
+  .large-container {
+    width: 80vw;
+  }
+}

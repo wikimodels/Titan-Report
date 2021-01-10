@@ -1,11 +1,18 @@
-<div fxLayout="column" fxLayoutAlign.xs="center center">
+<mat-progress-bar *ngIf="loadingService.loading$ | async" mode="indeterminate" color="warn" class="progress-bar">
+</mat-progress-bar>
+
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" fxLayoutGap.xs="20px">
   <h3>Данные о респондентах</h3>
+  <app-data-table></app-data-table>
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="center center"
+    class="large-container" fxLayoutGap.xs="20px">
+    <app-mongodb-chart [width]="osVersions.width" [height]="osVersions.height" [scr]="osVersions.chart_id">
+    </app-mongodb-chart>
+
+    <app-mongodb-chart [width]="devicesTypes.width" [height]="devicesTypes.height" [scr]="devicesTypes.chart_id">
+    </app-mongodb-chart>
+  </div>
+
+  <app-mongodb-chart [width]="map.width" [height]="map.height" [scr]="map.chart_id"></app-mongodb-chart>
 </div>
-<app-data-table></app-data-table>
-<app-mongodb-chart [width]="osVersions.width" [height]="osVersions.height" [scr]="osVersions.chart_id">
-</app-mongodb-chart>
-
-<app-mongodb-chart [width]="devicesTypes.width" [height]="devicesTypes.height" [scr]="devicesTypes.chart_id">
-</app-mongodb-chart>
-
-<app-mongodb-chart [width]="map.width" [height]="map.height" [scr]="map.chart_id"></app-mongodb-chart>

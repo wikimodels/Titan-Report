@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 import { DataTableService } from 'src/app/services/chart-displays/data-table.service';
 import { RespondentsChartsService } from 'src/app/services/chart-displays/respondents-charts.service';
@@ -21,28 +22,35 @@ export interface SortedItem {
   styleUrls: ['./data-table.component.css'],
 })
 export class DataTableComponent implements OnInit, AfterViewInit {
-  columns = ['flagUrl', 'country', 'city', 'count'];
-  displayedColumns: string[] = ['flagUrl', 'country', 'count'];
+  desktopColumns = ['flagUrl', 'country', 'city', 'count'];
+  mobileColumns = ['flagUrl', 'city', 'count'];
+  displayedColumns: string[];
   groupedRespondents: GroupedRespondent[] = [];
   sortedItem: SortedItem = { active: 'country', direction: 'desc' };
   resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
   respondentsFG: FormGroup;
-  countryChecked = false;
-  cityChecked = false;
+  showChbxes = false;
+
   labelPosition: 'before' | 'after' = 'after';
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
     private chartService: RespondentsChartsService,
-    private dataTableService: DataTableService
+    private dataTableService: DataTableService,
+    private deviceDetector: DeviceDetectorService
   ) {}
 
   ngOnInit(): void {
+    if (this.deviceDetector.isMobile()) {
+      this.showChbxes = true;
+      this.displayedColumns = this.mobileColumns;
+    } else {
+      this.showChbxes = false;
+      this.displayedColumns = this.desktopColumns;
+    }
     this.respondentsFG = new FormGroup({
-      country: new FormControl(true),
-      city: new FormControl(false),
+      country: new FormControl(false),
+      city: new FormControl(true),
     });
 
     this.respondentsFG.valueChanges.subscribe((value) => {
@@ -91,7 +99,7 @@ export class DataTableComponent implements OnInit, AfterViewInit {
   addColumn(existingColumns: string[], addedColumn: string) {
     existingColumns.push(addedColumn);
     let myArray = [];
-    this.columns.forEach((val) => {
+    this.desktopColumns.forEach((val) => {
       if (existingColumns.find((column) => column === val)) {
         myArray.push(val);
       }

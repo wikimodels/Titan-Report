@@ -14,7 +14,8 @@ import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LoadingService } from './services/shared/loading.service';
 import { QuestionnaireService } from './services/questionnaire.service';
-//TODO:Check isLoadingService. Not working.
+import { TestDataService } from './services/test-data.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,7 +26,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private questionnaireService: QuestionnaireService
+    private questionnaireService: QuestionnaireService,
+    private testS: TestDataService
   ) {}
 
   ngOnInit(): void {
@@ -49,5 +51,8 @@ export class AppComponent implements OnInit {
         // Else navigation has ended, so `remove()` a loading indicator
         //this.loadingService.loadingOff();
       });
+  }
+  generateTestData() {
+    this.testS.getUserInfo();
   }
 }

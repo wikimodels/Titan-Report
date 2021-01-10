@@ -26,9 +26,7 @@ body {
 .w-40 {
   max-width: 40px;
 }
-.data-table {
-  width: 340px;
-}
+
 /* NEW STYLES - SMALL SCREENS */
 @media screen and (max-width: 499px) {
   .small-column {
@@ -36,6 +34,26 @@ body {
   }
   .data-table {
     width: 100vw;
+  }
+  .menu-container {
+    width: 100vw;
+  }
+  .toolbar {
+    padding-bottom: 25px;
+    padding-top: 20px;
+  }
+  .header {
+    font-size: 1.1rem;
+    font-weight: 400;
+    width: 100%;
+  }
+  .subheader {
+    font-size: 16px;
+    font-weight: 400;
+    width: 100%;
+  }
+  .header-container {
+    width: 100%;
   }
 }
 
@@ -57,5 +75,22 @@ body {
   .menu-container {
     width: 80vw;
     margin: 0 auto;
+  }
+  .toolbar {
+    padding-bottom: 25px;
+    padding-top: 20px;
+  }
+  .header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: 100%;
+  }
+  .subheader {
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+  }
+  .header-container {
+    width: 100%;
   }
 }

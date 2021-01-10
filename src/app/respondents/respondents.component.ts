@@ -16,6 +16,7 @@ export class RespondentsComponent implements OnInit, AfterViewInit {
     private scrollToTopService: ScrollTopService
   ) {}
 
+  respondentsNumber = 0;
   osVersions = this.chartServcie.OS_VERSIONS_CHART();
   devicesTypes = this.chartServcie.DEVICES_TYPES();
   map = this.chartServcie.MAP();

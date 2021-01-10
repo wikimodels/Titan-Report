@@ -58,7 +58,7 @@ export class RespondentsChartsService {
     return this.getChartObj(
       chartId,
       window.innerWidth,
-      500,
+      600,
       0.8 * window.innerWidth,
       700
     );

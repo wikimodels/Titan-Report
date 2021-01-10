@@ -1,6 +1,5 @@
 <ng-container *ngIf="showChbxes">
-  <div [formGroup]="respondentsFG" fxLayout="row" fxLayoutAlign="space-around center"
-    style="width:100%; margin-bottom: 15px;">
+  <div [formGroup]="respondentsFG" fxLayout="row" fxLayoutAlign="space-around center" class="chbx-container">
     <mat-checkbox [labelPosition]="labelPosition" formControlName="country">
       Страна
     </mat-checkbox>

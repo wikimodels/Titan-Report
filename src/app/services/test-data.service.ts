@@ -11,7 +11,10 @@ import { catchError, map, tap, finalize, switchMap } from 'rxjs/operators';
 import { UserInfo } from 'src/models/user-info.model';
 import { getTestIps } from 'consts/test-ip-data';
 import { Questionnaire, QuestionType } from 'src/models/questionnaire.model';
-import { QUESTIONNAIRE_ANSWERED } from 'consts/answer';
+import {
+  getPristionQuestionnaire,
+  QUESTIONNAIRE_ANSWERED,
+} from 'consts/answer';
 import { from } from 'rxjs';
 import * as moment from 'moment';
 
@@ -21,7 +24,7 @@ import * as moment from 'moment';
 export class TestDataService {
   constructor(private readonly http: HttpClient) {}
 
-  questionnaireAnswered: Questionnaire = QUESTIONNAIRE_ANSWERED;
+  //questionnaireAnswered: Questionnaire = QUESTIONNAIRE_ANSWERED;
   questionnairiesAnswered: Questionnaire[];
   endDate = '2021-01-07';
   startDate = '2021-01-01';
@@ -72,7 +75,8 @@ export class TestDataService {
   }
 
   private supplyQuestionnairWithAnswers() {
-    this.questionnaireAnswered.questions.forEach((q) => {
+    let questionnaireAnswered = getPristionQuestionnaire();
+    questionnaireAnswered.questions.forEach((q) => {
       switch (q.question_type) {
         case QuestionType.BUTTON_SINGLE_ANSWER:
           let bsaRandomIndex = this.getRandomInt(
@@ -164,7 +168,7 @@ export class TestDataService {
           break;
       }
     });
-    return this.questionnaireAnswered.questions;
+    return questionnaireAnswered.questions;
   }
 
   private getRandomInt(min, max) {

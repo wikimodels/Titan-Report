@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { LoadingService } from '../services/loading.service';
+import { LoadingService } from '../services/shared/loading.service';
 
 @Component({
   selector: 'app-mongodb-chart',

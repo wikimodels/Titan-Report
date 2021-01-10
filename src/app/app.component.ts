@@ -12,7 +12,7 @@ import { QID } from 'consts/urls.consts';
 
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { LoadingService } from './services/loading.service';
+import { LoadingService } from './services/shared/loading.service';
 import { QuestionnaireService } from './services/questionnaire.service';
 //TODO:Check isLoadingService. Not working.
 @Component({

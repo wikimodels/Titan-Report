@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RespondentsChartsService } from '../services/chart-displays/respondents-charts.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { LoadingService } from '../services/loading.service';
+import { LoadingService } from '../services/shared/loading.service';
+import { ScrollTopService } from '../services/shared/scroll-to-top.service';
 
 @Component({
   selector: 'app-respondents',
@@ -11,7 +12,8 @@ import { LoadingService } from '../services/loading.service';
 export class RespondentsComponent implements OnInit, AfterViewInit {
   constructor(
     private chartServcie: RespondentsChartsService,
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    private scrollToTopService: ScrollTopService
   ) {}
 
   osVersions = this.chartServcie.OS_VERSIONS_CHART();
@@ -19,8 +21,9 @@ export class RespondentsComponent implements OnInit, AfterViewInit {
   map = this.chartServcie.MAP();
 
   ngOnInit(): void {
-    this.chartServcie.getGroupedRespondents();
+    this.scrollToTopService.setScrollTop();
     this.loadingService.loadingOn();
+    this.chartServcie.getGroupedRespondents();
   }
   ngAfterViewInit() {
     setTimeout(() => {

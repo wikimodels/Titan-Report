@@ -5,7 +5,7 @@ export function getChartsIds(): ChartsIds[] {
     question_id: 1,
     chartsIds: [
       '10578d98-04ac-4965-b27d-33868b9c36d3',
-      'f7e50699-8118-411f-8424-205c9d99c4d3',
+      'bac00933-1a23-4ff4-a7c7-4f59cd7b24e9',
     ],
   };
   return [q];

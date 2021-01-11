@@ -8,33 +8,43 @@ import {
 } from 'src/models/question-display';
 import { QuestionnaireService } from './questionnaire.service';
 import { getChartsIds } from '../../assets/scripts/charts_ids';
+import { DexieDbOpsService } from './dexie-indexedDb/dexie-idbs-ops.service';
+import { QID } from 'consts/urls.consts';
+import { from } from 'rxjs';
+import { Question, Questionnaire } from 'src/models/questionnaire.model';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionDisplayService {
   constructor(
     private deviceDetector: DeviceDetectorService,
+    private dexieIndexedDbService: DexieDbOpsService,
     private questionnaireService: QuestionnaireService
   ) {}
 
-  getQuestionDisplay(question_id: number) {
-    const question = this.questionnaireService
-      .getQuestionnaireSubj()
-      .questions.find((q) => q.question_id === question_id);
-
+  questionDisplay$(question_id: number) {
     const chartsIdsObj: ChartsIds = getChartsIds().find(
       (q) => q.question_id === question_id
     );
-
     const displayCharts = this.createChartsDisplays(chartsIdsObj);
-
-    const questionDisplay: QuestionDisplay = {
-      question_id: question.question_id,
-      question_text: question.question_text,
-      charts: displayCharts,
-    };
-    console.log(questionDisplay);
-    return questionDisplay;
+    return from(this.dexieIndexedDbService.getQuestionnaire(QID())).pipe(
+      map((questionnaire: Questionnaire) => {
+        const question = questionnaire.questions.find(
+          (q) => q.question_id === question_id
+        );
+        console.log('QUEST', question);
+        return question;
+      }),
+      map((question: Question) => {
+        const questionDisplay: QuestionDisplay = {
+          question_id: question.question_id,
+          question_text: question.question_text,
+          charts: displayCharts,
+        };
+        return questionDisplay;
+      })
+    );
   }
 
   private createChartsDisplays(chart: ChartsIds) {
@@ -44,8 +54,8 @@ export class QuestionDisplayService {
         chartId,
         window.innerWidth,
         window.innerWidth,
-        500,
-        400
+        520,
+        450
       );
       displayCharts.push(chart);
     });

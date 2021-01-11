@@ -1,0 +1,27 @@
+<mat-progress-bar
+  *ngIf="loadingService.loading$ | async"
+  mode="indeterminate"
+  color="warn"
+  class="progress-bar"
+>
+</mat-progress-bar>
+
+<div class="menu-container">
+  <mat-card
+    class="question-card mat-elevation-z8"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <div>
+      <mat-icon class="nav-icon" (click)="goHome()">foundation</mat-icon>
+    </div>
+    <div>
+      <span class="question-title"
+        >Вопрос &#8470;{{ questionDisplay.question_id }}</span
+      >
+      <span class="question-subtitle">
+        {{ questionDisplay.question_text }}
+      </span>
+    </div>
+  </mat-card>
+</div>

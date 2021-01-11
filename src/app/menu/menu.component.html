@@ -1,3 +1,10 @@
+<mat-progress-bar
+  *ngIf="loadingService.loading$ | async"
+  mode="indeterminate"
+  color="warn"
+  class="progress-bar"
+>
+</mat-progress-bar>
 <div class="menu-container">
   <!-- <ng-container *ngIf="!deviceDetectorService.isMobile()"> -->
   <mat-toolbar>
@@ -33,20 +40,24 @@
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-  <!-- </ng-container> -->
 
   <!-- QUESTIONS -->
-  <ng-container *ngIf="questionnaireService.questionnaireSubj$ | async">
+  <div *ngIf="(questionnaireService.questionnaireSubDataj$ | async).data">
     <mat-list>
       <mat-list-item matRipple (click)="goToRespondents()">
-        <h3 matLine>Данные о респондентах</h3>
+        <h3 matLine>
+          {{ (questionnaireService.questionnaireSubDataj$ | async).data.title }}
+        </h3>
         <p matLine>
-          <span>Геолокация, устройство входа и т.д.</span>
+          <span>{{
+            (questionnaireService.questionnaireSubDataj$ | async).data.subtitile
+          }}</span>
         </p>
       </mat-list-item>
       <mat-list-item
         *ngFor="
-          let q of (questionnaireService.questionnaireSubj$ | async).questions
+          let q of (questionnaireService.questionnaireSubDataj$ | async)
+            .questionnaire.questions
         "
         matRipple
         (click)="goToQuestionDisplay(q.question_id)"
@@ -57,5 +68,5 @@
         </p>
       </mat-list-item>
     </mat-list>
-  </ng-container>
+  </div>
 </div>

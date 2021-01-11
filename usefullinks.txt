@@ -15,3 +15,5 @@ https://bejda.medium.com/fixing-the-angular-404-on-refresh-issue-in-firebase-f46
 GOOD answer is here
 https://www.iditect.com/how-to/52347687.html
 
+HOW to MODIFY CSS for specific components
+https://jelmarose.com/post/angular-ng-deep/

@@ -3,6 +3,8 @@ import { RespondentsChartsService } from '../services/respondents/respondents-ch
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { LoadingService } from '../services/shared/loading.service';
 import { ScrollTopService } from '../services/shared/scroll-to-top.service';
+import { Router } from '@angular/router';
+import { MENU } from 'consts/routes.consts';
 
 @Component({
   selector: 'app-respondents',
@@ -14,7 +16,7 @@ export class RespondentsComponent implements OnInit, AfterViewInit {
   constructor(
     private chartServcie: RespondentsChartsService,
     public loadingService: LoadingService,
-    //private scrollToTopService: ScrollTopService,
+    private router: Router,
     public deviceDetectorService: DeviceDetectorService
   ) {}
 
@@ -33,5 +35,8 @@ export class RespondentsComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.loadingService.loadingOff();
     }, 6000);
+  }
+  goHome() {
+    this.router.navigate([MENU]);
   }
 }

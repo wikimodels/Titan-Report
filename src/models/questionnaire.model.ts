@@ -1,5 +1,9 @@
 import { UserInfo } from './user-info.model';
 
+export interface QuestionnaireData {
+  questionnaire: Questionnaire;
+  data?: { title: string; subtitile: string };
+}
 export interface Questionnaire {
   questionnaire_id?: string;
   questionnaire_name?: string;

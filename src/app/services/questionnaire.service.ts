@@ -10,6 +10,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import {
   Question,
   Questionnaire,
+  QuestionnaireData,
   QuestionType,
 } from 'src/models/questionnaire.model';
 
@@ -28,21 +29,23 @@ export class QuestionnaireService {
     private dexieIndexedDbService: DexieDbOpsService
   ) {}
 
-  private _questionnaireSubj = new BehaviorSubject<Questionnaire>({
-    questionnaire_id: null,
-    user_info: null,
-    questions: [],
-    creation_date: null,
-    modification_date: null,
+  private _questionnaireDataSubj = new BehaviorSubject<QuestionnaireData>({
+    questionnaire: {
+      questionnaire_id: null,
+      user_info: null,
+      questions: [],
+      creation_date: null,
+      modification_date: null,
+    },
   });
-  questionnaireSubj$ = this._questionnaireSubj.asObservable();
+  questionnaireSubDataj$ = this._questionnaireDataSubj.asObservable();
 
-  getQuestionnaireSubj(): Questionnaire {
-    return this._questionnaireSubj.getValue();
+  getQuestionnaireDataSubj(): QuestionnaireData {
+    return this._questionnaireDataSubj.getValue();
   }
 
-  setQuestionnaireSubj(questionnaire: Questionnaire) {
-    this._questionnaireSubj.next(questionnaire);
+  setQuestionnaireDataSubj(questionnaireData: QuestionnaireData) {
+    this._questionnaireDataSubj.next(questionnaireData);
   }
 
   async getQuestionnaireByQid(qid: string) {
@@ -51,7 +54,14 @@ export class QuestionnaireService {
       .get<Questionnaire>(GET_QUESTIONNAIRE_BY_QID(qid))
       .pipe(
         tap((value: Questionnaire) => {
-          this.setQuestionnaireSubj(value);
+          const questionnaireData: QuestionnaireData = {
+            questionnaire: value,
+            data: {
+              title: 'Данные о респондентах',
+              subtitile: 'Геолокация, устройство входа и т.д.',
+            },
+          };
+          this.setQuestionnaireDataSubj(questionnaireData);
         }),
         switchMap((value: Questionnaire) =>
           from(this.dexieIndexedDbService.addQuestionnaire(value))
@@ -64,15 +74,15 @@ export class QuestionnaireService {
       .subscribe();
   }
 
-  updateInternally(question: Question) {
-    const questionnaire = this.getQuestionnaireSubj();
-    const index = question.question_id - 1;
-    questionnaire.questions[index] = question;
-    console.log('updated questionnaire ', questionnaire);
-    this.setQuestionnaireSubj(questionnaire);
-  }
+  // updateInternally(question: Question) {
+  //   const questionnaire = this.getQuestionnaireSubj();
+  //   const index = question.question_id - 1;
+  //   questionnaire.questions[index] = question;
+  //   console.log('updated questionnaire ', questionnaire);
+  //   this.setQuestionnaireSubj(questionnaire);
+  // }
 
-  getFirstQuestionUrl() {
-    return this.getQuestionnaireSubj().first_question_url;
-  }
+  // getFirstQuestionUrl() {
+  //   return this.getQuestionnaireSubj().first_question_url;
+  // }
 }

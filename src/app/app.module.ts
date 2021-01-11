@@ -15,6 +15,7 @@ import { MongodbChartComponent } from './mongodb-chart/mongodb-chart.component';
 import { MongoPipe } from './pipes/mongo.pipe';
 import { DataTableComponent } from './respondents/data-table/data-table.component';
 import { QuestionDisplayComponent } from './question-display/question-display.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { QuestionDisplayComponent } from './question-display/question-display.co
     MongoPipe,
     DataTableComponent,
     QuestionDisplayComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,

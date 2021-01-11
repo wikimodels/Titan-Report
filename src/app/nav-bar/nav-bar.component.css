@@ -1,0 +1,6 @@
+@media screen and (max-width: 499px) {
+  :host ::ng-deep .mat-icon {
+    height: 30px;
+    width: 30px;
+  }
+}

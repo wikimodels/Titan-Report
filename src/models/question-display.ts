@@ -4,9 +4,6 @@ export interface ChartDisplay {
   height?: string;
 }
 
-// export interface Deuce {
-//   charts: ChartDisplay[];
-// }
 export interface QuestionDisplay {
   question_id: number;
   question_text?: string;

@@ -2,5 +2,13 @@ Good site with many unicodes
 https://www.toptal.com/designers/htmlarrows/symbols/
 
 Nice ScrollToTop Service
-https://dev.to/teroauralinna/scroll-to-the-top-on-angular-route-change-1gn5
+https://dev.to/teroauralinna/scroll-to-the-top-on-angular-route-change-1gn5 => Better approach
+RouterModule.forRoot(routes, {
+      relativeLinkResolution: 'corrected',
+      scrollPositionRestoration: 'top',
+    }),
 
+Fighting with 404 on page reload
+WORKS!!! I deleted everything related to firebase and reinitialized new firebase hosting procedure. IMPORTANT!!!
+Answer YES on question "Configure as a single-page app (rewrite all urls to /index.html)?"
+https://bejda.medium.com/fixing-the-angular-404-on-refresh-issue-in-firebase-f462124afe40

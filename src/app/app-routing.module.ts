@@ -7,7 +7,7 @@ import { RespondentsComponent } from './respondents/respondents.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/menu',
+    redirectTo: MENU,
     pathMatch: 'full',
   },
   {
@@ -18,6 +18,7 @@ const routes: Routes = [
     path: RESPONDENTS,
     component: RespondentsComponent,
   },
+  { path: '**', redirectTo: 'menu' },
   // {
   // path: QuestionType.RADIO_SINGLE_ANSWER + '/:question_id',
   // component: SingleRadioAnswerComponent,

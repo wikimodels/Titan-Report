@@ -1,32 +1,41 @@
 <mat-progress-bar *ngIf="loadingService.loading$ | async" mode="indeterminate" color="warn" class="progress-bar">
 </mat-progress-bar>
-<mat-toolbar style="margin-bottom: 25px;" class="mat-elevation-z4">
-  <mat-toolbar-row>
-    <div fxLayout="column" fxLayoutAlign="center start" class="header-container">
-      <div> <span class="header">Данные о Респондентах</span></div>
+
+<div class="menu-container">
+  <mat-toolbar class="mat-elevation-z4 main-toolbar">
+    <mat-toolbar-row>
+      <div fxLayout="column" fxLayoutAlign="center start" class="header-container">
+        <div> <span class="header">Данные о Респондентах</span></div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+
+
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" fxLayoutGap.xs="20px">
+
+    <app-data-table></app-data-table>
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="center center"
+      class="large-container" fxLayoutGap.xs="20px">
+      <app-mongodb-chart [width]="totalRespondents.width" [height]="totalRespondents.height"
+        [scr]="totalRespondents.chart_id">
+      </app-mongodb-chart>
+      <ng-container>
+        <app-mongodb-chart [width]="wordCloud.width" [height]="wordCloud.height" [scr]="wordCloud.chart_id">
+        </app-mongodb-chart>
+      </ng-container>
     </div>
-  </mat-toolbar-row>
-</mat-toolbar>
 
-<mat-toolbar style="margin-bottom: 25px; background-color: white;">
-  <mat-toolbar-row>
-    <div fxLayout="column" fxLayoutAlign="center start" class="header-container">
-      <div> <span class="header">Всего опрошено <span style="font-size: 22px;">5000 </span>человек</span></div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="center center"
+      class="large-container" fxLayoutGap.xs="20px">
+      <app-mongodb-chart [width]="osVersions.width" [height]="osVersions.height" [scr]="osVersions.chart_id">
+      </app-mongodb-chart>
+
+      <app-mongodb-chart [width]="devicesTypes.width" [height]="devicesTypes.height" [scr]="devicesTypes.chart_id">
+      </app-mongodb-chart>
     </div>
-  </mat-toolbar-row>
-</mat-toolbar>
 
-<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" fxLayoutGap.xs="20px">
-  <app-data-table></app-data-table>
-
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="center center"
-    class="large-container" fxLayoutGap.xs="20px">
-    <app-mongodb-chart [width]="osVersions.width" [height]="osVersions.height" [scr]="osVersions.chart_id">
-    </app-mongodb-chart>
-
-    <app-mongodb-chart [width]="devicesTypes.width" [height]="devicesTypes.height" [scr]="devicesTypes.chart_id">
-    </app-mongodb-chart>
+    <app-mongodb-chart [width]="map.width" [height]="map.height" [scr]="map.chart_id"></app-mongodb-chart>
   </div>
-
-  <app-mongodb-chart [width]="map.width" [height]="map.height" [scr]="map.chart_id"></app-mongodb-chart>
 </div>

@@ -1,26 +1,42 @@
 <div class="menu-container">
+  <!-- <ng-container *ngIf="!deviceDetectorService.isMobile()"> -->
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <div fxLayout="column" fxLayoutAlign="center center" class="header-container">
+        <div> <span class="header">Тренировки и Здоровье Позвоночника и Суставов</span></div>
+      </div>
+      <!-- <ng-container *ngIf="!deviceDetectorService.isMobile()">
+          <div fxLayout="column" fxLayoutAlign="center center" class="header-container">
+            <div>
+              <span class="header">Тренировки и Здоровье Позвоночника и Суставов</span>
+            </div>
+          </div>
+        </ng-container> -->
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+
+
+
+  <!-- GRID LIST -->
   <mat-grid-list cols="1" rowHeight="16:9">
     <mat-grid-tile><img src="assets/images/spine.jpg" alt="powerful spine">
     </mat-grid-tile>
   </mat-grid-list>
-  <mat-toolbar class="toolbar">
+
+  <!-- NAV-BAR -->
+  <mat-toolbar>
     <mat-toolbar-row>
-      <ng-container *ngIf="deviceDetectorService.isMobile()">
-        <div fxLayout="column" fxLayoutAlign="center center" class="header-container">
-          <div> <span class="header">Тренировки и Здоровье Позвоночника</span></div>
-          <div> <span class="header">и Суставов</span></div>
-          <div> <span class="subheader">Результаты Опроса</span></div>
+      <div fxLayout="column" fxLayoutAlign="center center" style="width:100%">
+        <div>
+          <span class="subheader">Результаты Опроса</span>
         </div>
-      </ng-container>
-      <ng-container *ngIf="!deviceDetectorService.isMobile()">
-        <div fxLayout="column" fxLayoutAlign="center center" class="header-container">
-          <div> <span class="header">Тренировки и Здоровье Позвоночника и Суставов</span></div>
-          <div> <span class="subheader">Результаты Опроса</span></div>
-        </div>
-      </ng-container>
+      </div>
     </mat-toolbar-row>
   </mat-toolbar>
+  <!-- </ng-container> -->
 
+  <!-- QUESTIONS -->
   <ng-container *ngIf="questionnaireService.questionnaireSubj$ |async">
     <mat-list>
       <mat-list-item matRipple (click)="goToRespondents()">

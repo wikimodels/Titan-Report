@@ -7,7 +7,7 @@ import { RespondentsComponent } from './respondents/respondents.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: MENU,
+    redirectTo: '/menu',
     pathMatch: 'full',
   },
   {
@@ -68,7 +68,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      relativeLinkResolution: 'corrected',
+      scrollPositionRestoration: 'top',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

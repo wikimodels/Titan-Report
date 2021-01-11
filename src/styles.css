@@ -39,20 +39,62 @@ body {
     width: 100vw;
   }
   .toolbar {
-    padding-bottom: 25px;
-    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  .main-toolbar {
+    margin-bottom: 25px;
+    width: 100%;
   }
   .header {
-    font-size: 1.1rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     width: 100%;
   }
   .subheader {
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     width: 100%;
   }
   .header-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .header {
+    font-size: 0.93rem;
+    font-weight: 500;
+    width: 100%;
+  }
+  .subheader {
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 363px) {
+  .header {
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+  }
+  .subheader {
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 321px) {
+  .header {
+    font-size: 0.8rem;
+    font-weight: 500;
+    width: 100%;
+  }
+  .subheader {
+    font-size: 0.8rem;
+    font-weight: 500;
     width: 100%;
   }
 }
@@ -76,18 +118,18 @@ body {
     width: 80vw;
     margin: 0 auto;
   }
-  .toolbar {
-    padding-bottom: 25px;
-    padding-top: 20px;
+
+  .main-toolbar {
+    margin-bottom: 40px;
   }
   .header {
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 400;
     width: 100%;
   }
   .subheader {
-    font-size: 16px;
-    font-weight: 300;
+    font-size: 1.2rem;
+    font-weight: 400;
     width: 100%;
   }
   .header-container {

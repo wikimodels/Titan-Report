@@ -64,6 +64,38 @@ export class RespondentsChartsService {
     );
   }
 
+  GENDERS_BY_CITIES() {
+    const chartId = 'f7e50699-8118-411f-8424-205c9d99c4d3';
+    return this.getChartObj(
+      chartId,
+      window.innerWidth,
+      window.innerWidth,
+      500,
+      400
+    );
+  }
+
+  TOTAL_RESPONDENTS() {
+    const chartId = 'a720d4e9-f5ef-465c-8127-3835d7cb597c';
+    return this.getChartObj(
+      chartId,
+      window.innerWidth,
+      window.innerWidth,
+      500,
+      400
+    );
+  }
+  WORD_CLOUD() {
+    const chartId = '35524fb5-da63-462c-a005-0bdf22404357';
+    return this.getChartObj(
+      chartId,
+      window.innerWidth,
+      window.innerWidth,
+      500,
+      400
+    );
+  }
+
   getGroupedRespondents() {
     this.http
       .get<GroupedRespondent[]>(GET_ALL_USERS_GROUPED_BY_LOCATION())

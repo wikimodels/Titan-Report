@@ -11,10 +11,7 @@ import { catchError, map, tap, finalize, switchMap } from 'rxjs/operators';
 import { UserInfo } from 'src/models/user-info.model';
 import { getTestIps } from 'consts/test-ip-data';
 import { Questionnaire, QuestionType } from 'src/models/questionnaire.model';
-import {
-  getPristionQuestionnaire,
-  QUESTIONNAIRE_ANSWERED,
-} from 'consts/answer';
+import { getPristionQuestionnaire } from 'consts/answer';
 import { from } from 'rxjs';
 import * as moment from 'moment';
 

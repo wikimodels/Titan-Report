@@ -4,8 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
-import { DataTableService } from 'src/app/services/chart-displays/data-table.service';
-import { RespondentsChartsService } from 'src/app/services/chart-displays/respondents-charts.service';
+import { DataTableService } from 'src/app/services/respondents/data-table.service';
+import { RespondentsChartsService } from 'src/app/services/respondents/respondents-charts.service';
 import {
   GroupedRespondent,
   GroupedRespondentsApi,

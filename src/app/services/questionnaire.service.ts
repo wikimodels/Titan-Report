@@ -13,8 +13,8 @@ import {
   QuestionType,
 } from 'src/models/questionnaire.model';
 
-import { IsLoadingService } from '@service-work/is-loading';
 import { GET_QUESTIONNAIRE_BY_QID } from 'consts/urls.consts';
+import { DexieDbOpsService } from './dexie-indexedDb/dexie-idbs-ops.service';
 
 const formatDisplayDate = 'DD-MM-YY';
 const formatDisplayTime = 'HH:mm';
@@ -25,7 +25,7 @@ const formatDisplayTime = 'HH:mm';
 export class QuestionnaireService {
   constructor(
     private http: HttpClient,
-    private isLoadingService: IsLoadingService
+    private dexieIndexedDbService: DexieDbOpsService
   ) {}
 
   private _questionnaireSubj = new BehaviorSubject<Questionnaire>({
@@ -45,22 +45,23 @@ export class QuestionnaireService {
     this._questionnaireSubj.next(questionnaire);
   }
 
-  getQuestionnaireByQid(qid: string) {
+  async getQuestionnaireByQid(qid: string) {
+    await this.dexieIndexedDbService.clearQuestionnaireDb();
     this.http
       .get<Questionnaire>(GET_QUESTIONNAIRE_BY_QID(qid))
       .pipe(
-        tap(() => {
-          this.isLoadingService.add();
+        tap((value: Questionnaire) => {
+          this.setQuestionnaireSubj(value);
         }),
+        switchMap((value: Questionnaire) =>
+          from(this.dexieIndexedDbService.addQuestionnaire(value))
+        ),
         catchError((error) => {
           console.log(error);
           return throwError(error);
         })
       )
-      .subscribe((questionnaire: Questionnaire) => {
-        console.log('Questionnaire from Cloud', questionnaire);
-        this.setQuestionnaireSubj(questionnaire);
-      });
+      .subscribe();
   }
 
   updateInternally(question: Question) {

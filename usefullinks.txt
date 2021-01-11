@@ -12,3 +12,6 @@ Fighting with 404 on page reload
 WORKS!!! I deleted everything related to firebase and reinitialized new firebase hosting procedure. IMPORTANT!!!
 Answer YES on question "Configure as a single-page app (rewrite all urls to /index.html)?"
 https://bejda.medium.com/fixing-the-angular-404-on-refresh-issue-in-firebase-f462124afe40
+GOOD answer is here
+https://www.iditect.com/how-to/52347687.html
+

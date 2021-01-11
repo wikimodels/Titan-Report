@@ -4,7 +4,7 @@ import { GET_ALL_USERS_GROUPED_BY_LOCATION } from 'consts/urls.consts';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ChartDisplay } from 'src/models/chart-display';
+import { ChartDisplay } from 'src/models/question-display';
 import {
   GroupedRespondent,
   GroupedRespondentsApi,
@@ -34,7 +34,7 @@ export class RespondentsChartsService {
 
   DEVICES_TYPES() {
     const chartId = '58d7f552-95e0-4131-9804-7f3646f95508';
-    return this.getChartObj(
+    return this.getDisplayChart(
       chartId,
       window.innerWidth,
       window.innerWidth,
@@ -44,7 +44,7 @@ export class RespondentsChartsService {
   }
   OS_VERSIONS_CHART() {
     const chartId = '91055dae-6c9f-4a4d-b2f4-d86b1e67fc8a';
-    return this.getChartObj(
+    return this.getDisplayChart(
       chartId,
       window.innerWidth,
       window.innerWidth,
@@ -55,7 +55,7 @@ export class RespondentsChartsService {
 
   MAP() {
     const chartId = '014963e6-a416-4d5c-a045-70eeee471be5';
-    return this.getChartObj(
+    return this.getDisplayChart(
       chartId,
       window.innerWidth,
       600,
@@ -66,7 +66,7 @@ export class RespondentsChartsService {
 
   GENDERS_BY_CITIES() {
     const chartId = 'f7e50699-8118-411f-8424-205c9d99c4d3';
-    return this.getChartObj(
+    return this.getDisplayChart(
       chartId,
       window.innerWidth,
       window.innerWidth,
@@ -77,7 +77,7 @@ export class RespondentsChartsService {
 
   TOTAL_RESPONDENTS() {
     const chartId = 'a720d4e9-f5ef-465c-8127-3835d7cb597c';
-    return this.getChartObj(
+    return this.getDisplayChart(
       chartId,
       window.innerWidth,
       window.innerWidth,
@@ -87,7 +87,7 @@ export class RespondentsChartsService {
   }
   WORD_CLOUD() {
     const chartId = '35524fb5-da63-462c-a005-0bdf22404357';
-    return this.getChartObj(
+    return this.getDisplayChart(
       chartId,
       window.innerWidth,
       window.innerWidth,
@@ -115,7 +115,13 @@ export class RespondentsChartsService {
       });
   }
 
-  private getChartObj(chartId: string, widthXs, heightXs, widthLg, heightLg) {
+  private getDisplayChart(
+    chartId: string,
+    widthXs,
+    heightXs,
+    widthLg,
+    heightLg
+  ) {
     let obj: ChartDisplay = { chart_id: chartId };
     obj.width = this.deviceDetector.isMobile() === true ? widthXs : widthLg;
     obj.height = this.deviceDetector.isMobile() === true ? heightXs : heightLg;

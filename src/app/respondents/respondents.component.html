@@ -21,10 +21,9 @@
       <app-mongodb-chart [width]="totalRespondents.width" [height]="totalRespondents.height"
         [scr]="totalRespondents.chart_id">
       </app-mongodb-chart>
-      <ng-container>
-        <app-mongodb-chart [width]="wordCloud.width" [height]="wordCloud.height" [scr]="wordCloud.chart_id">
-        </app-mongodb-chart>
-      </ng-container>
+
+      <app-mongodb-chart [width]="wordCloud.width" [height]="wordCloud.height" [scr]="wordCloud.chart_id">
+      </app-mongodb-chart>
     </div>
 
     <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="center center"
@@ -35,7 +34,6 @@
       <app-mongodb-chart [width]="devicesTypes.width" [height]="devicesTypes.height" [scr]="devicesTypes.chart_id">
       </app-mongodb-chart>
     </div>
-
     <app-mongodb-chart [width]="map.width" [height]="map.height" [scr]="map.chart_id"></app-mongodb-chart>
   </div>
 </div>

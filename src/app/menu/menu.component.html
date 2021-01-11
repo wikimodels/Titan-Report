@@ -2,32 +2,31 @@
   <!-- <ng-container *ngIf="!deviceDetectorService.isMobile()"> -->
   <mat-toolbar>
     <mat-toolbar-row>
-      <div fxLayout="column" fxLayoutAlign="center center" class="header-container">
-        <div> <span class="header">Тренировки и Здоровье Позвоночника и Суставов</span></div>
+      <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        class="header-container"
+      >
+        <div>
+          <span class="header"
+            >Тренировки и Здоровье Позвоночника и Суставов</span
+          >
+        </div>
       </div>
-      <!-- <ng-container *ngIf="!deviceDetectorService.isMobile()">
-          <div fxLayout="column" fxLayoutAlign="center center" class="header-container">
-            <div>
-              <span class="header">Тренировки и Здоровье Позвоночника и Суставов</span>
-            </div>
-          </div>
-        </ng-container> -->
     </mat-toolbar-row>
   </mat-toolbar>
 
-
-
-
   <!-- GRID LIST -->
   <mat-grid-list cols="1" rowHeight="16:9">
-    <mat-grid-tile><img src="assets/images/spine.jpg" alt="powerful spine">
+    <mat-grid-tile
+      ><img src="assets/images/spine.jpg" alt="powerful spine" />
     </mat-grid-tile>
   </mat-grid-list>
 
   <!-- NAV-BAR -->
   <mat-toolbar>
     <mat-toolbar-row>
-      <div fxLayout="column" fxLayoutAlign="center center" style="width:100%">
+      <div fxLayout="column" fxLayoutAlign="center center" style="width: 100%">
         <div>
           <span class="subheader">Результаты Опроса</span>
         </div>
@@ -37,18 +36,24 @@
   <!-- </ng-container> -->
 
   <!-- QUESTIONS -->
-  <ng-container *ngIf="questionnaireService.questionnaireSubj$ |async">
+  <ng-container *ngIf="questionnaireService.questionnaireSubj$ | async">
     <mat-list>
       <mat-list-item matRipple (click)="goToRespondents()">
-        <h3 matLine> Данные о респондентах</h3>
+        <h3 matLine>Данные о респондентах</h3>
         <p matLine>
           <span>Геолокация, устройство входа и т.д.</span>
         </p>
       </mat-list-item>
-      <mat-list-item *ngFor="let q of (questionnaireService.questionnaireSubj$ |async).questions" matRipple>
-        <h3 matLine> Вопрос &#8470;{{q.question_id}}</h3>
+      <mat-list-item
+        *ngFor="
+          let q of (questionnaireService.questionnaireSubj$ | async).questions
+        "
+        matRipple
+        (click)="goToQuestionDisplay(q.question_id)"
+      >
+        <h3 matLine>Вопрос &#8470;{{ q.question_id }}</h3>
         <p matLine>
-          <span> {{q.question_text}} </span>
+          <span> {{ q.question_text }} </span>
         </p>
       </mat-list-item>
     </mat-list>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RESPONDENTS } from 'consts/routes.consts';
+import { QUESTION_DISPLAY, RESPONDENTS } from 'consts/routes.consts';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { QuestionnaireService } from '../services/questionnaire.service';
 
@@ -17,6 +17,11 @@ export class MenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  goToQuestionDisplay(question_id: number) {
+    this.router.navigate([QUESTION_DISPLAY + '/' + question_id]);
+  }
+
   goToRespondents() {
     this.router.navigate([RESPONDENTS]);
   }

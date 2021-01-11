@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MENU, RESPONDENTS } from 'consts/routes.consts';
+import { MENU, QUESTION_DISPLAY, RESPONDENTS } from 'consts/routes.consts';
 import { MenuComponent } from './menu/menu.component';
+import { QuestionDisplayComponent } from './question-display/question-display.component';
 import { RespondentsComponent } from './respondents/respondents.component';
 
 const routes: Routes = [
@@ -18,11 +19,11 @@ const routes: Routes = [
     path: RESPONDENTS,
     component: RespondentsComponent,
   },
+  {
+    path: QUESTION_DISPLAY + '/:question_id',
+    component: QuestionDisplayComponent,
+  },
   { path: '**', redirectTo: 'menu' },
-  // {
-  // path: QuestionType.RADIO_SINGLE_ANSWER + '/:question_id',
-  // component: SingleRadioAnswerComponent,
-  // },
   // {
   // path: QuestionType.BUTTON_SINGLE_ANSWER + '/:question_id',
   // component: ButtonSingleAnswerComponent,

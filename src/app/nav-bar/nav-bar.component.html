@@ -8,11 +8,13 @@
 
 <div class="menu-container">
   <mat-card
+    matRipple
     class="question-card mat-elevation-z8"
     fxLayout="row"
     fxLayoutAlign="start center"
+    (click)="goHome()"
   >
-    <div>
+    <div *ngIf="!deviceDetector.isMobile()">
       <mat-icon class="nav-icon" (click)="goHome()">foundation</mat-icon>
     </div>
     <div>

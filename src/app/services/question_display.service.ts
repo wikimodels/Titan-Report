@@ -9,10 +9,10 @@ import {
 import { QuestionnaireService } from './questionnaire.service';
 import { getChartsIds } from '../../assets/scripts/charts_ids';
 import { DexieDbOpsService } from './dexie-indexedDb/dexie-idbs-ops.service';
-import { QID } from 'consts/urls.consts';
-import { from } from 'rxjs';
+import { GET_QUESTIONNAIRE_BY_QID, QID } from 'consts/urls.consts';
+import { from, throwError } from 'rxjs';
 import { Question, Questionnaire } from 'src/models/questionnaire.model';
-import { map } from 'rxjs/operators';
+import { catchError, map, share, shareReplay } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,6 +20,7 @@ export class QuestionDisplayService {
   constructor(
     private deviceDetector: DeviceDetectorService,
     private dexieIndexedDbService: DexieDbOpsService,
+    private http: HttpClient,
     private questionnaireService: QuestionnaireService
   ) {}
 
@@ -28,7 +29,12 @@ export class QuestionDisplayService {
       (q) => q.question_id === question_id
     );
     const displayCharts = this.createChartsDisplays(chartsIdsObj);
-    return from(this.dexieIndexedDbService.getQuestionnaire(QID())).pipe(
+    return this.http.get<Questionnaire>(GET_QUESTIONNAIRE_BY_QID(QID())).pipe(
+      shareReplay(1),
+      catchError((error) => {
+        console.log(error);
+        return throwError(error);
+      }),
       map((questionnaire: Questionnaire) => {
         const question = questionnaire.questions.find(
           (q) => q.question_id === question_id
@@ -43,6 +49,10 @@ export class QuestionDisplayService {
           charts: displayCharts,
         };
         return questionDisplay;
+      }),
+      catchError((error) => {
+        console.log(error);
+        return throwError(error);
       })
     );
   }

@@ -6,6 +6,7 @@ export function getChartsIds(): ChartsIds[] {
     chartsIds: [
       '10578d98-04ac-4965-b27d-33868b9c36d3',
       'bac00933-1a23-4ff4-a7c7-4f59cd7b24e9',
+      'd7909860-b09e-4ce7-a592-7fa182882a0c',
     ],
   };
   const q2 = {

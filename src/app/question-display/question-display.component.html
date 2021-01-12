@@ -1,7 +1,7 @@
 <ng-container *ngIf="this.questionDisplay$ | async as qd">
-  <ng-container *ngIf="qd !== null"
-    ><app-nav-bar [questionDisplay]="qd"></app-nav-bar
-  ></ng-container>
+  <ng-container *ngIf="qd !== null">
+    <app-nav-bar [questionDisplay]="qd"></app-nav-bar>
+  </ng-container>
   <div class="menu-container">
     <div
       fxLayout.xs="column"

@@ -14,8 +14,12 @@ import {
   QuestionType,
 } from 'src/models/questionnaire.model';
 
-import { GET_QUESTIONNAIRE_BY_QID } from 'consts/urls.consts';
+import {
+  GET_QUESTIONNAIRE_BY_QID,
+  UPLOAD_TEST_QUESTIONNAIRE,
+} from 'consts/urls.consts';
 import { DexieDbOpsService } from './dexie-indexedDb/dexie-idbs-ops.service';
+import { getTestQuestionnaire } from 'consts/test-data-questionnaire';
 
 const formatDisplayDate = 'DD-MM-YY';
 const formatDisplayTime = 'HH:mm';
@@ -74,6 +78,10 @@ export class QuestionnaireService {
       .subscribe();
   }
 
+  uploadTestQuestionnaire() {
+    const q = getTestQuestionnaire();
+    this.http.post(UPLOAD_TEST_QUESTIONNAIRE(), q).subscribe(console.log);
+  }
   // updateInternally(question: Question) {
   //   const questionnaire = this.getQuestionnaireSubj();
   //   const index = question.question_id - 1;

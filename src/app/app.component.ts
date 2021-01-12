@@ -23,4 +23,7 @@ export class AppComponent implements OnInit {
   generateTestData() {
     this.testS.getUserInfo();
   }
+  uploadTestQuestionnaire() {
+    this.questionnaireService.uploadTestQuestionnaire();
+  }
 }

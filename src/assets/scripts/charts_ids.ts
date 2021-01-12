@@ -26,23 +26,44 @@ export function getChartsIds(): ChartsIds[] {
   };
   const q4 = {
     question_id: 4,
-    chartsIds: ['', '', ''],
+    chartsIds: [
+      'b73fc074-7d50-4307-9d3f-ccb9d7df7a69',
+      '5826cabe-fd04-4158-b363-a6706663a872',
+      '196c3d59-a6a6-4238-b254-bab6e07eca44',
+      '3ae0221c-423b-4362-9c3d-8a797d5e6b3f',
+    ],
   };
   const q5 = {
     question_id: 5,
-    chartsIds: ['', '', ''],
+    chartsIds: [
+      '67a8b035-3d96-4716-864d-aa46f77f9d03',
+      'f7474baa-fc6c-45e4-8e9b-7556f6d48e8e',
+      '093f5d86-8fa6-4eac-b553-fa540730abb3',
+    ],
   };
   const q6 = {
     question_id: 6,
-    chartsIds: ['', '', ''],
+    chartsIds: [
+      '6326abe5-8940-4d7a-85f9-b75bf3ded19f',
+      'd9442a36-f7e4-4204-9bed-15a39cbaa051',
+      'ec84fe82-a9a5-4683-9f93-2724d3f2542c',
+    ],
   };
   const q7 = {
     question_id: 7,
-    chartsIds: ['', '', ''],
+    chartsIds: [
+      'f1c8edc9-9533-475c-a7eb-8669bf72eb1c',
+      '7c0070b6-53e2-4870-9f26-ea73e8b23657',
+      'f87a0e8c-b540-4fbe-ad38-262af75ff5a6',
+    ],
   };
   const q8 = {
     question_id: 8,
-    chartsIds: ['', '', ''],
+    chartsIds: [
+      '0d2ac3df-70a2-47cb-963d-71da54f443cc',
+      '83e3c4ec-70cc-495c-bb61-105069400f4e',
+      '5e93f390-0195-4915-a3c5-224e2a441f43',
+    ],
   };
   const q9 = {
     question_id: 9,

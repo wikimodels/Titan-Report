@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { QuestionDisplayComponent } from './question-display/question-display.component';
 import { RespondentsComponent } from './respondents/respondents.component';
 import { RatingComponent } from './rating/rating.component';
+import { TextAnswerComponent } from './text-answer/text-answer.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: QuestionType.RATING_ANSWER + '/:question_id',
     component: RatingComponent,
+  },
+  {
+    path: QuestionType.TEXT + '/:question_id',
+    component: TextAnswerComponent,
   },
   { path: '**', redirectTo: 'menu' },
   // {

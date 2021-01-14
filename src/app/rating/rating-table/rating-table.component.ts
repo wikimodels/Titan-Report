@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RatingDisplay } from 'src/models/rating-display';
+import { RatingDisplay } from 'src/models/rating-display/rating-displa';
 
 @Component({
   selector: 'app-rating-table',

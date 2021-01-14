@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StarsComponent } from './rating/stars/stars.component';
 
 import { RatingTableComponent } from './rating/rating-table/rating-table.component';
+import { TextAnswerComponent } from './text-answer/text-answer.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { RatingTableComponent } from './rating/rating-table/rating-table.compone
     RatingComponent,
     StarsComponent,
     RatingTableComponent,
+    TextAnswerComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,62 +1,65 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
-import {
-  ChartDisplay,
-  ChartsIds,
-  QuestionDisplay,
-} from 'src/models/question-display';
-import { QuestionnaireService } from './questionnaire.service';
-import { getChartsIds } from '../../../consts/charts_ids';
-
 import {
   GET_QUESTIONNAIRE_BY_QID,
   QID,
-  RATING_AVGS_BY_QUESTION_INDEX,
+  RATING_AVGS_PAIRED,
   RATING_AVGS_TOTAL,
 } from 'consts/urls.consts';
-import { combineLatest, concat, from, Observable, of, throwError } from 'rxjs';
+import { combineLatest, Observable, throwError } from 'rxjs';
 import { Question, Questionnaire } from 'src/models/questionnaire.model';
-import { catchError, map, share, shareReplay } from 'rxjs/operators';
-import { RatingDisplay, RatingObj } from 'src/models/rating-display';
+import { catchError, map, shareReplay } from 'rxjs/operators';
+
+import { getRatingCollForRatingQuestion } from 'src/assets/scripts/projectConfigs/rating-questions';
+import { RatingDisplay } from 'src/models/rating-display/rating-display';
+import { RatingDisplayView } from 'src/models/rating-display/rating-display-view';
+
 @Injectable({
   providedIn: 'root',
 })
 export class RatingDisplayService {
   constructor(private http: HttpClient) {}
 
-  rating$(
-    ratingObjTotal: RatingObj,
-    ratingObjs: RatingObj[]
-  ): Observable<RatingDisplay[]> {
-    const ratingTotal$ = this.ratingAvgsTotal$(ratingObjTotal);
-    const ratingObjs$ = this.ratingAvgsByQuestionIndex$(ratingObjs);
+  ratingDisplayView$(questionId: number): Observable<RatingDisplayView> {
+    const ratingObjs = getRatingCollForRatingQuestion(questionId);
 
+    const totalRating$ = this.http.post<RatingDisplay>(
+      RATING_AVGS_TOTAL(),
+      ratingObjs.rating_obj
+    );
+    const pairedRating$ = this.http.post<RatingDisplay[]>(
+      RATING_AVGS_PAIRED(),
+      ratingObjs.paired_rating_objs
+    );
+    const question$ = this.http.get<any>(GET_QUESTIONNAIRE_BY_QID(QID())).pipe(
+      map((questionnoire: Questionnaire) => {
+        const question: Question = questionnoire.questions.find(
+          (q) => q.question_id === questionId
+        );
+        return question;
+      })
+    );
     return combineLatest(
-      ratingTotal$,
-      ratingObjs$,
-      (a: RatingDisplay, b: RatingDisplay[]) => {
-        b.push(a);
-        return b;
+      question$,
+      totalRating$,
+      pairedRating$,
+      (question, totalRating, pairedRating) => {
+        pairedRating.push(totalRating);
+        return [question, pairedRating];
       }
     ).pipe(
+      shareReplay(1),
+      map((value) => {
+        const displayRatingView: RatingDisplayView = {
+          question: value[0] as Question,
+          ratingDisplays: value[1] as RatingDisplay[],
+        };
+        return displayRatingView;
+      }),
       catchError((error) => {
         console.log(error);
         return throwError(error);
       })
     );
-  }
-
-  ratingAvgsByQuestionIndex$(
-    ratingObjs: RatingObj[]
-  ): Observable<RatingDisplay[]> {
-    return this.http.post<RatingDisplay[]>(
-      RATING_AVGS_BY_QUESTION_INDEX(),
-      ratingObjs
-    );
-  }
-
-  ratingAvgsTotal$(ratingObj: RatingObj): Observable<RatingDisplay> {
-    return this.http.post<RatingDisplay>(RATING_AVGS_TOTAL(), ratingObj);
   }
 }

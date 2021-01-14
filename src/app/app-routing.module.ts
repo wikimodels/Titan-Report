@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MENU, QUESTION_DISPLAY, RESPONDENTS } from 'consts/routes.consts';
+import {
+  MENU,
+  QUESTION_DISPLAY,
+  RESPONDENTS,
+  STAR_RATING,
+} from 'consts/routes.consts';
+import { QuestionType } from 'src/models/questionnaire.model';
 import { MenuComponent } from './menu/menu.component';
 import { QuestionDisplayComponent } from './question-display/question-display.component';
 import { RespondentsComponent } from './respondents/respondents.component';
+import { RatingComponent } from './rating/rating.component';
 
 const routes: Routes = [
   {
@@ -22,6 +29,10 @@ const routes: Routes = [
   {
     path: QUESTION_DISPLAY + '/:question_id',
     component: QuestionDisplayComponent,
+  },
+  {
+    path: QuestionType.RATING_ANSWER + '/:question_id',
+    component: RatingComponent,
   },
   { path: '**', redirectTo: 'menu' },
   // {

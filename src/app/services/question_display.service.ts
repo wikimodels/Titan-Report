@@ -7,8 +7,8 @@ import {
   QuestionDisplay,
 } from 'src/models/question-display';
 import { QuestionnaireService } from './questionnaire.service';
-import { getChartsIds } from '../../assets/scripts/charts_ids';
-import { DexieDbOpsService } from './dexie-indexedDb/dexie-idbs-ops.service';
+import { getChartsIds } from '../../../consts/charts_ids';
+
 import { GET_QUESTIONNAIRE_BY_QID, QID } from 'consts/urls.consts';
 import { from, throwError } from 'rxjs';
 import { Question, Questionnaire } from 'src/models/questionnaire.model';
@@ -19,7 +19,7 @@ import { catchError, map, share, shareReplay } from 'rxjs/operators';
 export class QuestionDisplayService {
   constructor(
     private deviceDetector: DeviceDetectorService,
-    private dexieIndexedDbService: DexieDbOpsService,
+
     private http: HttpClient,
     private questionnaireService: QuestionnaireService
   ) {}
@@ -63,7 +63,7 @@ export class QuestionDisplayService {
       const chart = this.getDisplayChart(
         chartId,
         window.innerWidth,
-        window.innerWidth,
+        0.85 * window.innerWidth,
         520,
         450
       );

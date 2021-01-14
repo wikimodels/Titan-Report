@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { QuestionDisplay } from 'src/models/question-display';
-import { DexieDbOpsService } from '../services/dexie-indexedDb/dexie-idbs-ops.service';
-import { DexieQuestionnaireService } from '../services/dexie-indexedDb/dexie-idbs.service';
+
 import { QuestionDisplayService } from '../services/question_display.service';
 
 @Component({

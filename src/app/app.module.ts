@@ -16,6 +16,9 @@ import { MongoPipe } from './pipes/mongo.pipe';
 import { DataTableComponent } from './respondents/data-table/data-table.component';
 import { QuestionDisplayComponent } from './question-display/question-display.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { RatingComponent } from './rating/rating.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StarsComponent } from './rating/stars/stars.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     DataTableComponent,
     QuestionDisplayComponent,
     NavBarComponent,
+    RatingComponent,
+    StarsComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,10 +40,12 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     AppMaterialModule,
     AppRoutingModule,
     FormsModule,
+
     BrowserModule,
     HttpClientModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

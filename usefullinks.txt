@@ -17,3 +17,10 @@ https://www.iditect.com/how-to/52347687.html
 
 HOW to MODIFY CSS for specific components
 https://jelmarose.com/post/angular-ng-deep/
+
+
+device layout
+https://www.quirksmode.org/blog/archives/2010/04/the_orientation.html
+
+Star Rating
+https://www.positronx.io/angular-star-rating-example-tutorial/

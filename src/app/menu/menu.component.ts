@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QUESTION_DISPLAY, RESPONDENTS } from 'consts/routes.consts';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { Question, QuestionType } from 'src/models/questionnaire.model';
 import { QuestionnaireService } from '../services/questionnaire.service';
 import { LoadingService } from '../services/shared/loading.service';
 
@@ -26,8 +27,20 @@ export class MenuComponent implements OnInit, AfterViewInit {
       this.loadingService.loadingOff();
     }, 0);
   }
-  goToQuestionDisplay(question_id: number) {
-    this.router.navigate([QUESTION_DISPLAY + '/' + question_id]);
+  goToQuestionDisplay(question: Question) {
+    let url;
+    switch (question.question_type) {
+      case QuestionType.RATING_ANSWER:
+        url = QuestionType.RATING_ANSWER + '/' + question.question_id;
+        break;
+      case QuestionType.TEXT:
+        url = QuestionType.TEXT + '/' + question.question_id;
+        break;
+      default:
+        url = QUESTION_DISPLAY + '/' + question.question_id;
+        break;
+    }
+    this.router.navigate([url]);
   }
 
   goToRespondents() {

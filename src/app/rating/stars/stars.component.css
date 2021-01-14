@@ -1,0 +1,28 @@
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 1.6rem;
+  color: #d3d3d3;
+}
+.full {
+  color: #ffc107;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #ffc107;
+}
+
+.animate {
+  animation: flip-vertical-fwd 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+@keyframes flip-vertical-fwd {
+  0% {
+    transform: translateZ(0) rotateY(0);
+  }
+
+  100% {
+    transform: translateZ(160px) rotateY(360deg);
+  }
+}

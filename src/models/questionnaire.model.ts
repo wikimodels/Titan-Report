@@ -29,6 +29,7 @@ export interface Question {
 
 export interface Answer {
   answer_id: number;
+  answer_value?: number;
   answer_text: string;
   answer_boolean_reply?: boolean;
   answer_text_reply?: boolean;

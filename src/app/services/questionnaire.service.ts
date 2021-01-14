@@ -18,7 +18,7 @@ import {
   GET_QUESTIONNAIRE_BY_QID,
   UPLOAD_TEST_QUESTIONNAIRE,
 } from 'consts/urls.consts';
-import { DexieDbOpsService } from './dexie-indexedDb/dexie-idbs-ops.service';
+
 import { getTestQuestionnaire } from 'consts/test-data-questionnaire';
 
 const formatDisplayDate = 'DD-MM-YY';
@@ -28,10 +28,7 @@ const formatDisplayTime = 'HH:mm';
   providedIn: 'root',
 })
 export class QuestionnaireService {
-  constructor(
-    private http: HttpClient,
-    private dexieIndexedDbService: DexieDbOpsService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   private _questionnaireDataSubj = new BehaviorSubject<QuestionnaireData>({
     questionnaire: {
@@ -53,7 +50,6 @@ export class QuestionnaireService {
   }
 
   async getQuestionnaireByQid(qid: string) {
-    await this.dexieIndexedDbService.clearQuestionnaireDb();
     this.http
       .get<Questionnaire>(GET_QUESTIONNAIRE_BY_QID(qid))
       .pipe(
@@ -67,9 +63,6 @@ export class QuestionnaireService {
           };
           this.setQuestionnaireDataSubj(questionnaireData);
         }),
-        switchMap((value: Questionnaire) =>
-          from(this.dexieIndexedDbService.addQuestionnaire(value))
-        ),
         catchError((error) => {
           console.log(error);
           return throwError(error);

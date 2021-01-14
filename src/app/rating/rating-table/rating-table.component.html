@@ -1,0 +1,13 @@
+<h2 style="font-weight: 400">{{ dataSource.title }}</h2>
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  class="rating-table"
+  *ngFor="let el of dataSource.ratings"
+>
+  <div fxFlex="40%">{{ el.category }}</div>
+  <div fxFlex="40%" style="text-align: center">
+    <app-stars [starRating]="el.rating"></app-stars>
+  </div>
+  <div fxFlex="20%" style="text-align: right">{{ el.rating }}</div>
+</div>

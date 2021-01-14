@@ -2,7 +2,10 @@
   <ng-container *ngIf="qd !== null">
     <app-nav-bar [questionDisplay]="qd"></app-nav-bar>
   </ng-container>
-  <div class="menu-container">
+  <div
+    class="menu-container"
+    *ngIf="this.ratingDisplay$ | async as ratingDisplay"
+  >
     <div
       fxLayout.xs="column"
       fxLayout="raw wrap"
@@ -10,21 +13,12 @@
       fxLayoutAlign="space-between center"
       fxLayoutGap.xs="20px"
     >
-      <!-- <ng-template #t let-fill="fill">
-        <span class="star animate" [class.full]="fill === 100">
-          <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
-        </span>
-      </ng-template> -->
-
-      <h1>
-        Trump goes up <app-stars [starRating]="3.3"></app-stars>
-        <!-- <ngb-rating
-          [(rate)]="starRating"
-          [starTemplate]="t"
-          [readonly]="true"
-          [max]="5"
-        ></ngb-rating> -->
-      </h1>
+      <ng-container *ngFor="let dataSource of ratingDisplay">
+        <app-rating-table
+          [dataSource]="dataSource"
+          style="width: 90%"
+        ></app-rating-table>
+      </ng-container>
     </div>
   </div>
 </ng-container>

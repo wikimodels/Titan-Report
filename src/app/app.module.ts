@@ -20,6 +20,8 @@ import { RatingComponent } from './rating/rating.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StarsComponent } from './rating/stars/stars.component';
 
+import { RatingTableComponent } from './rating/rating-table/rating-table.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { StarsComponent } from './rating/stars/stars.component';
     NavBarComponent,
     RatingComponent,
     StarsComponent,
+    RatingTableComponent,
   ],
   imports: [
     BrowserModule,

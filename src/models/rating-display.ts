@@ -6,5 +6,9 @@ export interface RatingObj {
 
 export interface RatingDisplay {
   title: string;
-  ratings: [{ category: string; rating: number }];
+  ratings: Rating[];
+}
+export interface Rating {
+  category: string;
+  rating: number;
 }

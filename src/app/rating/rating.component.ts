@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { QuestionDisplay } from 'src/models/question-display';
-import { RatingDisplay, RatingObj } from 'src/models/rating-display';
+import { Rating, RatingDisplay, RatingObj } from 'src/models/rating-display';
 import { QuestionDisplayService } from '../services/question_display.service';
 import { RatingDisplayService } from '../services/rating-display.service';
 
@@ -29,8 +29,10 @@ export class RatingComponent implements OnInit {
     title: 'Общая оценка',
     ratingQuestionIndex: 11,
   };
+  dataSource: Rating[];
   questionDisplay$: Observable<QuestionDisplay>;
-  ratingDisplay$: Observable<RatingDisplay>;
+  ratingDisplay$: Observable<RatingDisplay[]>;
+  displayedColumns: string[] = ['category', 'stars', 'rating'];
   constructor(
     public ratingService: RatingDisplayService,
     private route: ActivatedRoute,
@@ -38,9 +40,11 @@ export class RatingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ratingService
-      .rating$(this.ratingObjTotal, this.ratingObjs)
-      .subscribe(console.log);
+    this.ratingDisplay$ = this.ratingService.rating$(
+      this.ratingObjTotal,
+      this.ratingObjs
+    );
+
     this.questionDisplay$ = this.questionDisplayService.questionDisplay$(
       +this.route.snapshot.params['question_id']
     );

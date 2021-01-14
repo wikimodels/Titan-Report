@@ -75,15 +75,4 @@ export class QuestionnaireService {
     const q = getTestQuestionnaire();
     this.http.post(UPLOAD_TEST_QUESTIONNAIRE(), q).subscribe(console.log);
   }
-  // updateInternally(question: Question) {
-  //   const questionnaire = this.getQuestionnaireSubj();
-  //   const index = question.question_id - 1;
-  //   questionnaire.questions[index] = question;
-  //   console.log('updated questionnaire ', questionnaire);
-  //   this.setQuestionnaireSubj(questionnaire);
-  // }
-
-  // getFirstQuestionUrl() {
-  //   return this.getQuestionnaireSubj().first_question_url;
-  // }
 }

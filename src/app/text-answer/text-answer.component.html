@@ -1,20 +1,30 @@
-<ng-container *ngIf="this.textAnswers$ | async as textAnswers">
-  <ng-container *ngIf="textAnswers.question !== null">
-    <app-nav-bar [questionDisplay]="textAnswers.question"></app-nav-bar>
-  </ng-container>
-  <div class="menu-container">
-    <div
-      fxLayout.xs="column"
-      fxLayout="raw wrap"
-      fxLayoutAlign.xs="center center"
-      fxLayoutAlign="start center"
-      fxLayoutGap.xs="20px"
-    >
-      <app-text-answer-card
-        *ngFor="let answer of textAnswers.textAnswerQuestions; let i = index"
-        [textAnswerQuestion]="answer"
-        [index]="i"
-      ></app-text-answer-card>
-    </div>
-  </div>
+<ng-container *ngIf="question$ | async as question">
+  <app-nav-bar [questionDisplay]="question"></app-nav-bar>
 </ng-container>
+<div class="menu-container">
+  <div
+    fxLayout.xs="column"
+    fxLayout="raw wrap"
+    fxLayoutAlign.xs="center center"
+    fxLayoutAlign="start center"
+    fxLayoutGap.xs="20px"
+  >
+    <!-- <div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()"
+    > -->
+    <app-text-answer-card
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="250"
+      [scrollWindow]="true"
+      (scrolled)="onScroll()"
+      *ngFor="let answer of textAnswerQuestions; let i = index"
+      [textAnswerQuestion]="answer"
+      [index]="collectionTotalCount - i - 1"
+    ></app-text-answer-card>
+  </div>
+</div>

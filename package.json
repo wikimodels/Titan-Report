@@ -28,6 +28,7 @@
     "marked": "^1.2.7",
     "moment": "^2.29.1",
     "ngx-device-detector": "^2.0.5",
+    "ngx-infinite-scroll": "^10.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

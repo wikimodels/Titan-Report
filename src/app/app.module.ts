@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './material.module';
@@ -23,6 +23,8 @@ import { StarsComponent } from './rating/stars/stars.component';
 import { RatingTableComponent } from './rating/rating-table/rating-table.component';
 import { TextAnswerComponent } from './text-answer/text-answer.component';
 import { TextAnswerCardComponent } from './text-answer/text-answer-card/text-answer-card.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -42,16 +44,18 @@ import { TextAnswerCardComponent } from './text-answer/text-answer-card/text-ans
     TextAnswerCardComponent,
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppMaterialModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserModule,
-    HttpClientModule,
-    FlexLayoutModule,
-    ReactiveFormsModule,
     NgbModule,
+    FormsModule,
+    CommonModule,
+    BrowserModule,
+    BrowserModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    AppRoutingModule,
+    AppMaterialModule,
+    ReactiveFormsModule,
+    InfiniteScrollModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

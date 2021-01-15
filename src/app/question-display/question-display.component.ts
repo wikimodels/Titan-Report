@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { QuestionDisplay } from 'src/models/question-display';
 
-import { QuestionDisplayService } from '../services/question_display.service';
+import { QuestionDisplayService } from '../services/question-display.service';
 
 @Component({
   selector: 'app-question-display',

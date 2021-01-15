@@ -47,7 +47,6 @@ import { TextAnswerCardComponent } from './text-answer/text-answer-card/text-ans
     AppMaterialModule,
     AppRoutingModule,
     FormsModule,
-
     BrowserModule,
     HttpClientModule,
     FlexLayoutModule,

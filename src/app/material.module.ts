@@ -26,6 +26,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 const modules = [
   MatSortModule,
   MatMenuModule,
@@ -36,6 +37,7 @@ const modules = [
   MatTableModule,
   MatInputModule,
   MatSliderModule,
+  ScrollingModule,
   MatDialogModule,
   MatRadioModule,
   MatSelectModule,

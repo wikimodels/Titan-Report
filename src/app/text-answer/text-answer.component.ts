@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { Observable } from 'rxjs';
 import { TextAnswerView } from 'src/models/text-answer/text-answer-view';
 import { TextAnswerService } from '../services/text-answer.service';
@@ -12,7 +13,6 @@ import { TextAnswerService } from '../services/text-answer.service';
 })
 export class TextAnswerComponent implements OnInit {
   textAnswers$: Observable<TextAnswerView>;
-
   constructor(
     public textAnswerService: TextAnswerService,
     private route: ActivatedRoute

@@ -1,31 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { QuestionDisplay } from 'src/models/question-display';
-import { QuestionTextAnswer } from 'src/models/question-text-answer';
-import { QuestionDisplayService } from '../services/question_display.service';
-import { RatingDisplayService } from '../services/rating-display.service';
+import { TextAnswerView } from 'src/models/text-answer/text-answer-view';
 import { TextAnswerService } from '../services/text-answer.service';
 
 @Component({
   selector: 'app-text-answer',
   templateUrl: './text-answer.component.html',
   styleUrls: ['./text-answer.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextAnswerComponent implements OnInit {
-  questionDisplay$: Observable<QuestionDisplay>;
-  textAnswers$: Observable<QuestionTextAnswer[]>;
-  questionIndex = 18;
+  textAnswers$: Observable<TextAnswerView>;
+
   constructor(
     public textAnswerService: TextAnswerService,
-    private route: ActivatedRoute,
-    public questionDisplayService: QuestionDisplayService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.textAnswers$ = this.textAnswerService.textAnswers$(this.questionIndex);
-    this.questionDisplay$ = this.questionDisplayService.questionDisplay$(
+    this.textAnswers$ = this.textAnswerService.textAnswers$(
       +this.route.snapshot.params['question_id']
     );
+    // .subscribe(console.log);
   }
 }

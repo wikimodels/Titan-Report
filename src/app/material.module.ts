@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
@@ -27,7 +26,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
 const modules = [
   MatSortModule,
   MatMenuModule,

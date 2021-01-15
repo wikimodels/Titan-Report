@@ -22,6 +22,7 @@ import { StarsComponent } from './rating/stars/stars.component';
 
 import { RatingTableComponent } from './rating/rating-table/rating-table.component';
 import { TextAnswerComponent } from './text-answer/text-answer.component';
+import { TextAnswerCardComponent } from './text-answer/text-answer-card/text-answer-card.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TextAnswerComponent } from './text-answer/text-answer.component';
     StarsComponent,
     RatingTableComponent,
     TextAnswerComponent,
+    TextAnswerCardComponent,
   ],
   imports: [
     BrowserModule,

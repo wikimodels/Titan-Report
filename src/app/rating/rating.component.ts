@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { QuestionDisplay } from 'src/models/question-display';
-import {
-  Rating,
-  RatingDisplay,
-  RatingObj,
-} from 'src/models/rating-display/rating-displa';
-import { QuestionDisplayService } from '../services/question_display.service';
 import { RatingDisplayService } from '../services/rating-display.service';
 
 @Component({

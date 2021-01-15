@@ -1,16 +1,20 @@
-<ng-container *ngIf="this.questionDisplay$ | async as qd">
-  <ng-container *ngIf="qd !== null">
-    <app-nav-bar [questionDisplay]="qd"></app-nav-bar>
+<ng-container *ngIf="this.textAnswers$ | async as textAnswers">
+  <ng-container *ngIf="textAnswers.question !== null">
+    <app-nav-bar [questionDisplay]="textAnswers.question"></app-nav-bar>
   </ng-container>
-  <div class="menu-container" *ngIf="this.textAnswers$ | async as textAnswers">
+  <div class="menu-container">
     <div
       fxLayout.xs="column"
       fxLayout="raw wrap"
       fxLayoutAlign.xs="center center"
-      fxLayoutAlign="space-between center"
+      fxLayoutAlign="start center"
       fxLayoutGap.xs="20px"
     >
-      <div>{{ textAnswers }}</div>
+      <app-text-answer-card
+        *ngFor="let answer of textAnswers.textAnswerQuestions; let i = index"
+        [textAnswerQuestion]="answer"
+        [index]="i"
+      ></app-text-answer-card>
     </div>
   </div>
 </ng-container>

@@ -1,7 +1,5 @@
-import {
-  RatingObj,
-  RatingObjColl,
-} from 'src/models/rating-display/rating-displa';
+import { RatingObj } from 'src/models/rating-display/rating-obj';
+import { RatingObjColl } from 'src/models/rating-display/rating-obj-coll';
 
 export function getRatingCollForRatingQuestion(
   questionId: number

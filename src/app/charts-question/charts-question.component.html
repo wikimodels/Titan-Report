@@ -1,5 +1,5 @@
 <ng-container *ngIf="question$ | async as question">
-  <div class="container" fxLayout="column" fxLayoutAlign="center start">
+  <div fxLayout="column" fxLayoutAlign="center start">
     <app-nav-bar [question]="question"></app-nav-bar>
   </div>
   <ng-container *ngIf="question !== null">

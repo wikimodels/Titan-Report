@@ -6,30 +6,33 @@
 >
 </mat-progress-bar>
 
-<div class="menu-container">
+<div>
   <mat-card
     matRipple
-    class="question-card mat-elevation-z8"
+    class="nav-bar mat-elevation-z8"
     fxLayout="row"
     fxLayoutAlign="start center"
     (click)="goHome()"
   >
-    <div *ngIf="!deviceDetector.isMobile()">
+    <!-- <div *ngIf="!deviceDetector.isMobile()">
       <mat-icon class="nav-icon" (click)="goHome()">foundation</mat-icon>
-    </div>
+    </div> -->
+    <!-- QUESTION -->
     <ng-container *ngIf="question">
       <div>
-        <span class="question-title"
+        <span class="nav-bar-title"
           >Вопрос &#8470;{{ question.question_id }}</span
         >
-        <span class="question-subtitle">
+        <span class="nav-bar-subtitle">
           {{ question.question_text }}
         </span>
       </div>
     </ng-container>
+
+    <!-- REPONDENTS -->
     <ng-container *ngIf="respondents">
       <div>
-        <span class="question-subtitle">
+        <span class="nav-bar-title">
           {{ respondents.respondents_header }}
         </span>
       </div>

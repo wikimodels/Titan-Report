@@ -5,18 +5,14 @@
     <div
       fxLayout="column"
       fxLayoutAlign="center center"
-      fxLayoutGap="40px"
-      fxLayoutGap.xs="20px"
+      fxLayoutGap.lt-md="25px"
     >
       <app-data-table></app-data-table>
 
       <div
-        fxLayout="row wrap"
-        fxLayout.xs="column"
-        fxLayoutAlign="space-between center"
-        fxLayoutAlign.xs="center center"
-        class="large-container"
-        fxLayoutGap.xs="20px"
+        fxLayout.lt-md="column"
+        fxLayoutAlign.lt-md="center center"
+        fxLayoutGap.lt-md="25px"
       >
         <app-mongodb-chart
           *ngFor="let chartId of questionnaire.respondents.respondents_charts"

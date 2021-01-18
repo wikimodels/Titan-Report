@@ -2,18 +2,16 @@
   <ng-container *ngIf="ratingDisplayView.question !== null">
     <app-nav-bar [question]="ratingDisplayView.question"></app-nav-bar>
   </ng-container>
-  <div class="menu-container">
+  <div class="rating-container">
     <div
-      fxLayout.xs="column"
-      fxLayout="raw wrap"
-      fxLayoutAlign.xs="center center"
-      fxLayoutAlign="space-between center"
-      fxLayoutGap.xs="20px"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap.lt-md="20px"
     >
       <ng-container *ngFor="let dataSource of ratingDisplayView.ratingDisplays">
         <app-rating-table
           [dataSource]="dataSource"
-          style="width: 90%"
+          class="rating-table"
         ></app-rating-table>
       </ng-container>
     </div>

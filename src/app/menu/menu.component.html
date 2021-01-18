@@ -1,66 +1,57 @@
-<!-- <mat-progress-bar
-  *ngIf="loadingService.loading$ | async"
-  mode="indeterminate"
-  color="warn"
-  class="progress-bar"
->
-</mat-progress-bar> -->
-<div class="menu-container">
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <div
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        class="header-container"
-      >
-        <div>
-          <span class="header"
-            >Тренировки и Здоровье Позвоночника и Суставов</span
-          >
-        </div>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      class="header-container"
+    >
+      <div>
+        <span class="menu-header"
+          >Тренировки и Здоровье Позвоночника и Суставов</span
+        >
       </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-  <!-- GRID LIST -->
-  <mat-grid-list cols="1" rowHeight="16:9">
-    <mat-grid-tile
-      ><img src="assets/images/spine.jpg" alt="powerful spine" />
-    </mat-grid-tile>
-  </mat-grid-list>
+<!-- GRID LIST -->
+<mat-grid-list cols="1" rowHeight="16:9">
+  <mat-grid-tile
+    ><img src="assets/images/spine.jpg" alt="powerful spine" />
+  </mat-grid-tile>
+</mat-grid-list>
 
-  <!-- NAV-BAR -->
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <div fxLayout="column" fxLayoutAlign="center center" style="width: 100%">
-        <div>
-          <span class="subheader">Результаты Опроса</span>
-        </div>
+<!-- NAV-BAR -->
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div fxLayout="column" fxLayoutAlign="center center" style="width: 100%">
+      <div>
+        <span class="menu-subheader">Результаты Опроса</span>
       </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-  <!-- LIST -->
-  <div *ngIf="questionnaire$ | async as questionnaire">
-    <mat-list>
-      <mat-list-item matRipple (click)="goToRespondents()">
-        <h3 matLine>
-          {{ questionnaire.respondents.respondents_header }}
-        </h3>
-        <p matLine>
-          <span>{{ questionnaire.respondents.respondents_subheader }}</span>
-        </p>
-      </mat-list-item>
-      <mat-list-item
-        *ngFor="let question of questionnaire.questions"
-        matRipple
-        (click)="goToQuestionDisplay(question)"
-      >
-        <h3 matLine>Вопрос &#8470;{{ question.question_id }}</h3>
-        <p matLine>
-          <span> {{ question.question_text }} </span>
-        </p>
-      </mat-list-item>
-    </mat-list>
-  </div>
+<!-- LIST -->
+<div *ngIf="questionnaire$ | async as questionnaire" class="list-container">
+  <mat-list>
+    <mat-list-item matRipple (click)="goToRespondents()">
+      <h3 matLine>
+        {{ questionnaire.respondents.respondents_header }}
+      </h3>
+      <p matLine>
+        <span>{{ questionnaire.respondents.respondents_subheader }}</span>
+      </p>
+    </mat-list-item>
+    <mat-list-item
+      *ngFor="let question of questionnaire.questions"
+      matRipple
+      (click)="goToQuestionDisplay(question)"
+    >
+      <h3 matLine>Вопрос &#8470;{{ question.question_id }}</h3>
+      <p matLine>
+        <span> {{ question.question_text }} </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
 </div>

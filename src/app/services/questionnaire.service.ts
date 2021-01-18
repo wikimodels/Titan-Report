@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 
-import { Questionnaire } from 'src/models/questionnaire.model';
+import { Question, Questionnaire } from 'src/models/questionnaire.model';
 
 import {
   GET_QUESTIONNAIRE_BY_QID,
@@ -32,7 +32,7 @@ export class QuestionnaireService {
       );
   }
 
-  question$(questionId: number) {
+  question$(questionId: number): Observable<Question> {
     return this.questionnaire$().pipe(
       map((questionnaire: Questionnaire) => {
         const question = questionnaire.questions.find(

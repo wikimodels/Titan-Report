@@ -14,7 +14,7 @@ import { RespondentsComponent } from './respondents/respondents.component';
 import { MongodbChartComponent } from './mongodb-chart/mongodb-chart.component';
 import { MongoPipe } from './pipes/mongo.pipe';
 import { DataTableComponent } from './respondents/data-table/data-table.component';
-import { QuestionDisplayComponent } from './question-display/question-display.component';
+
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RatingComponent } from './rating/rating.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -25,6 +25,7 @@ import { TextAnswerComponent } from './text-answer/text-answer.component';
 import { TextAnswerCardComponent } from './text-answer/text-answer-card/text-answer-card.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CommonModule } from '@angular/common';
+import { ChartsQuestionComponent } from './charts-question/charts-question.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +36,13 @@ import { CommonModule } from '@angular/common';
     MongodbChartComponent,
     MongoPipe,
     DataTableComponent,
-    QuestionDisplayComponent,
     NavBarComponent,
     RatingComponent,
     StarsComponent,
     RatingTableComponent,
     TextAnswerComponent,
     TextAnswerCardComponent,
+    ChartsQuestionComponent,
   ],
   imports: [
     NgbModule,

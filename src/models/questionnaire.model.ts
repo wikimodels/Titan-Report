@@ -9,6 +9,7 @@ export interface Questionnaire {
   questionnaire_name?: string;
   user_info?: UserInfo;
   questions?: Question[];
+  respondents?: Respondents;
   creation_date?: string;
   modification_date?: string;
   first_question_url?: string;
@@ -18,6 +19,7 @@ export interface Questionnaire {
 export interface Question {
   question_id: number;
   question_type: QuestionType;
+  question_charts?: string[];
   question_text: string;
   question_text_answer?: string;
   question_answers?: Answer[];
@@ -31,11 +33,19 @@ export interface Answer {
   answer_id: number;
   answer_value?: number;
   answer_text: string;
+  answer_chart_text?: string;
   answer_boolean_reply?: boolean;
   answer_text_reply?: boolean;
   answer_img_url?: string;
   answer_img_alt?: string;
   answer_clicked_style?: string;
+}
+
+export interface Respondents {
+  respondents_header?: string;
+  respondents_subheader: string;
+  respondents_charts?: string[];
+  respondents_map_chart: string;
 }
 
 export enum QuestionType {

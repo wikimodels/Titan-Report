@@ -5,6 +5,10 @@ import { LoadingService } from '../services/shared/loading.service';
 import { ScrollTopService } from '../services/shared/scroll-to-top.service';
 import { Router } from '@angular/router';
 import { MENU } from 'consts/routes.consts';
+import { Questionnaire } from 'src/models/questionnaire.model';
+import { Observable } from 'rxjs';
+import { QuestionnaireService } from '../services/questionnaire.service';
+import { QID } from 'consts/urls.consts';
 
 @Component({
   selector: 'app-respondents',
@@ -14,22 +18,18 @@ import { MENU } from 'consts/routes.consts';
 })
 export class RespondentsComponent implements OnInit, AfterViewInit {
   constructor(
-    private chartServcie: RespondentsChartsService,
+    private respondentsService: RespondentsChartsService,
+    private questionnaireService: QuestionnaireService,
     public loadingService: LoadingService,
-    private router: Router,
-    public deviceDetectorService: DeviceDetectorService
+    private router: Router
   ) {}
 
-  totalRespondents = this.chartServcie.TOTAL_RESPONDENTS();
-  wordCloud = this.chartServcie.WORD_CLOUD();
-  osVersions = this.chartServcie.OS_VERSIONS_CHART();
-  devicesTypes = this.chartServcie.DEVICES_TYPES();
-  map = this.chartServcie.MAP();
+  questionnaire$: Observable<Questionnaire>;
 
   ngOnInit(): void {
-    //this.scrollToTopService.setScrollTop();
+    this.questionnaire$ = this.questionnaireService.questionnaire$();
     this.loadingService.loadingOn();
-    this.chartServcie.getGroupedRespondents();
+    this.respondentsService.getGroupedRespondents();
   }
   ngAfterViewInit() {
     setTimeout(() => {

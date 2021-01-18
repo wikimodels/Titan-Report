@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MENU } from 'consts/routes.consts';
 import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
-import { QuestionDisplay } from 'src/models/question-display';
+import { Question, Respondents } from 'src/models/questionnaire.model';
 import { LoadingService } from '../services/shared/loading.service';
 
 @Component({
@@ -11,7 +11,8 @@ import { LoadingService } from '../services/shared/loading.service';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit, AfterViewInit {
-  @Input() questionDisplay: QuestionDisplay;
+  @Input() question: Question;
+  @Input() respondents: Respondents;
   constructor(
     private router: Router,
     public loadingService: LoadingService,

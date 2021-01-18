@@ -1,0 +1,12 @@
+<ng-container *ngIf="question$ | async as question">
+  <div class="container" fxLayout="column" fxLayoutAlign="center start">
+    <app-nav-bar [question]="question"></app-nav-bar>
+  </div>
+  <ng-container *ngIf="question !== null">
+    <app-mongodb-chart
+      *ngFor="let chart of question.question_charts"
+      [scr]="chart"
+    >
+    </app-mongodb-chart>
+  </ng-container>
+</ng-container>

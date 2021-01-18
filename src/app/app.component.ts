@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.questionnaireService.getQuestionnaireByQid(QID());
+    //this.questionnaireService.getQuestionnaireByQid(QID());
   }
 
   generateTestData() {

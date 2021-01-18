@@ -4,11 +4,6 @@ export interface ChartDisplay {
   height?: string;
 }
 
-export interface QuestionDisplay {
-  question_id: number;
-  question_text?: string;
-  charts: ChartDisplay[];
-}
 export interface ChartsIds {
   question_id: number;
   chartsIds: string[];

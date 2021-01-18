@@ -8,8 +8,6 @@ import { LoadingService } from '../services/shared/loading.service';
 })
 export class MongodbChartComponent implements OnInit {
   @Input() scr: string;
-  @Input() width: number;
-  @Input() height: number;
 
   constructor() {}
 

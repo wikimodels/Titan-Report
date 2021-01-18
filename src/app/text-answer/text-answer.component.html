@@ -1,21 +1,9 @@
 <ng-container *ngIf="question$ | async as question">
-  <app-nav-bar [questionDisplay]="question"></app-nav-bar>
+  <app-nav-bar [question]="question"></app-nav-bar>
 </ng-container>
+
 <div class="menu-container">
-  <div
-    fxLayout.xs="column"
-    fxLayout="raw wrap"
-    fxLayoutAlign.xs="center center"
-    fxLayoutAlign="start center"
-    fxLayoutGap.xs="20px"
-  >
-    <!-- <div
-      class="search-results"
-      infiniteScroll
-      [infiniteScrollDistance]="2"
-      [infiniteScrollThrottle]="50"
-      (scrolled)="onScroll()"
-    > -->
+  <div>
     <app-text-answer-card
       infiniteScroll
       [infiniteScrollDistance]="2"

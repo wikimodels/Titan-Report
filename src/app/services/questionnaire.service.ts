@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError, of, from } from 'rxjs';
-import { catchError, map, tap, finalize, switchMap } from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  tap,
+  finalize,
+  switchMap,
+  shareReplay,
+} from 'rxjs/operators';
 import * as moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -16,10 +23,12 @@ import {
 
 import {
   GET_QUESTIONNAIRE_BY_QID,
+  QID,
   UPLOAD_TEST_QUESTIONNAIRE,
 } from 'consts/urls.consts';
 
 import { getTestQuestionnaire } from 'consts/test-data-questionnaire';
+import { getPristionQuestionnaire } from 'consts/pristin-questionnaire';
 
 const formatDisplayDate = 'DD-MM-YY';
 const formatDisplayTime = 'HH:mm';
@@ -30,49 +39,32 @@ const formatDisplayTime = 'HH:mm';
 export class QuestionnaireService {
   constructor(private http: HttpClient) {}
 
-  private _questionnaireDataSubj = new BehaviorSubject<QuestionnaireData>({
-    questionnaire: {
-      questionnaire_id: null,
-      user_info: null,
-      questions: [],
-      creation_date: null,
-      modification_date: null,
-    },
-  });
-  questionnaireSubDataj$ = this._questionnaireDataSubj.asObservable();
-
-  getQuestionnaireDataSubj(): QuestionnaireData {
-    return this._questionnaireDataSubj.getValue();
-  }
-
-  setQuestionnaireDataSubj(questionnaireData: QuestionnaireData) {
-    this._questionnaireDataSubj.next(questionnaireData);
-  }
-
-  async getQuestionnaireByQid(qid: string) {
-    this.http
-      .get<Questionnaire>(GET_QUESTIONNAIRE_BY_QID(qid))
+  questionnaire$(): Observable<Questionnaire> {
+    let quesionnaireId = QID();
+    return this.http
+      .get<Questionnaire>(GET_QUESTIONNAIRE_BY_QID(quesionnaireId))
       .pipe(
-        tap((value: Questionnaire) => {
-          const questionnaireData: QuestionnaireData = {
-            questionnaire: value,
-            data: {
-              title: 'Данные о респондентах',
-              subtitile: 'Геолокация, устройство входа и т.д.',
-            },
-          };
-          this.setQuestionnaireDataSubj(questionnaireData);
-        }),
+        shareReplay(1),
         catchError((error) => {
           console.log(error);
           return throwError(error);
         })
-      )
-      .subscribe();
+      );
+  }
+
+  question$(questionId: number) {
+    return this.questionnaire$().pipe(
+      map((questionnaire: Questionnaire) => {
+        const question = questionnaire.questions.find(
+          (q) => q.question_id === questionId
+        );
+        return question;
+      })
+    );
   }
 
   uploadTestQuestionnaire() {
-    const q = getTestQuestionnaire();
+    const q = getPristionQuestionnaire();
     this.http.post(UPLOAD_TEST_QUESTIONNAIRE(), q).subscribe(console.log);
   }
 }

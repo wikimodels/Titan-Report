@@ -13,8 +13,7 @@ import { BehaviorSubject, combineLatest, Observable, throwError } from 'rxjs';
 import { Question, Questionnaire } from 'src/models/questionnaire.model';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { TextAnswerQuestion } from 'src/models/text-answer/text-answer-question';
-import { TextAnswerView } from 'src/models/text-answer/text-answer-view';
-import { TextAst } from '@angular/compiler';
+
 const formatDisplayDate = 'DD MMM YYYY HH:mm';
 @Injectable({
   providedIn: 'root',
@@ -54,6 +53,7 @@ export class TextAnswerService {
         PAGED_QUESTIONS_TEXT_ANSWERS(questionIndex, skip, limit)
       )
       .pipe(
+        shareReplay(1),
         map((value: TextAnswerQuestion[]) => {
           value.forEach((v) => {
             v.submission_date = moment(v.submission_date)
@@ -69,24 +69,25 @@ export class TextAnswerService {
       });
   }
 
-  question$(questionId: number) {
-    return this.http
-      .get<any>(GET_QUESTIONNAIRE_BY_QID(QID()))
-      .pipe(
-        map((questionnoire: Questionnaire) => {
-          const question: Question = questionnoire.questions.find(
-            (q) => q.question_id === questionId
-          );
-          return question;
-        })
-      )
-      .pipe(shareReplay(1), catchError(this.handleError));
-  }
+  // question$(questionId: number) {
+  //   return this.http
+  //     .get<any>(GET_QUESTIONNAIRE_BY_QID(QID()))
+  //     .pipe(
+  //       shareReplay(1),
+  //       map((questionnoire: Questionnaire) => {
+  //         const question: Question = questionnoire.questions.find(
+  //           (q) => q.question_id === questionId
+  //         );
+  //         return question;
+  //       })
+  //     )
+  //     .pipe(shareReplay(1), catchError(this.handleError));
+  // }
 
   getCollectionCount() {
     this.http
       .get<number>(TOTAL_COUNT_OF_ANSWERS())
-      .pipe(catchError(this.handleError))
+      .pipe(shareReplay(1), catchError(this.handleError))
       .subscribe((value) => {
         this.setCollectionCountSub(value);
       });

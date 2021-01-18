@@ -1,22 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { QID } from 'consts/urls.consts';
 
 import { Observable, Subscription } from 'rxjs';
-import { Question } from 'src/models/questionnaire.model';
+import { map } from 'rxjs/operators';
+import { Question, Questionnaire } from 'src/models/questionnaire.model';
 import { TextAnswerQuestion } from 'src/models/text-answer/text-answer-question';
-import { TextAnswerView } from 'src/models/text-answer/text-answer-view';
+import { QuestionnaireService } from '../services/questionnaire.service';
 import { TextAnswerService } from '../services/text-answer.service';
 
 @Component({
   selector: 'app-text-answer',
   templateUrl: './text-answer.component.html',
   styleUrls: ['./text-answer.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextAnswerComponent implements OnInit, OnDestroy {
   question$: Observable<Question>;
@@ -28,15 +24,18 @@ export class TextAnswerComponent implements OnInit, OnDestroy {
   textAnswerSub: Subscription;
   totalCountSub: Subscription;
   constructor(
-    public textAnswerService: TextAnswerService,
+    private textAnswerService: TextAnswerService,
+    private questionnaireService: QuestionnaireService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.questionId = +this.route.snapshot.params['question_id'];
+    this.question$ = this.questionnaireService.question$(
+      +this.route.snapshot.params['question_id']
+    );
+
     this.textAnswerService.getCollectionCount();
-    this.question$ = this.textAnswerService.question$(this.questionId);
-    // .subscribe(console.log);
+
     this.textAnswerService.getPagedQuestions(
       this.questionId,
       this.skip,
@@ -51,6 +50,7 @@ export class TextAnswerComponent implements OnInit, OnDestroy {
         console.log(this.textAnswerQuestions);
       }
     );
+
     this.totalCountSub = this.textAnswerService.collectionCountSub$.subscribe(
       (value) => {
         this.collectionTotalCount = value;

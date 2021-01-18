@@ -17,13 +17,22 @@
     <div *ngIf="!deviceDetector.isMobile()">
       <mat-icon class="nav-icon" (click)="goHome()">foundation</mat-icon>
     </div>
-    <div>
-      <span class="question-title"
-        >Вопрос &#8470;{{ questionDisplay.question_id }}</span
-      >
-      <span class="question-subtitle">
-        {{ questionDisplay.question_text }}
-      </span>
-    </div>
+    <ng-container *ngIf="question">
+      <div>
+        <span class="question-title"
+          >Вопрос &#8470;{{ question.question_id }}</span
+        >
+        <span class="question-subtitle">
+          {{ question.question_text }}
+        </span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="respondents">
+      <div>
+        <span class="question-subtitle">
+          {{ respondents.respondents_header }}
+        </span>
+      </div>
+    </ng-container>
   </mat-card>
 </div>

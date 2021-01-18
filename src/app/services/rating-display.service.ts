@@ -10,10 +10,11 @@ import { combineLatest, Observable, throwError } from 'rxjs';
 import { Question, Questionnaire } from 'src/models/questionnaire.model';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 
-import { getRatingCollForRatingQuestion } from 'src/assets/scripts/projectConfigs/rating-questions';
 import { RatingDisplay } from 'src/models/rating-display/rating-display';
 import { RatingDisplayView } from 'src/models/rating-display/rating-display-view';
-
+import { RatingObj } from 'src/models/rating-display/rating-obj';
+import { RatingObjColl } from 'src/models/rating-display/rating-obj-coll';
+import * as defaults from '../../assets/utils/defaults.json';
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +22,7 @@ export class RatingDisplayService {
   constructor(private http: HttpClient) {}
 
   ratingDisplayView$(questionId: number): Observable<RatingDisplayView> {
-    const ratingObjs = getRatingCollForRatingQuestion(questionId);
+    const ratingObjs = this.getRatingCollForRatingQuestion(questionId);
 
     const totalRating$ = this.http.post<RatingDisplay>(
       RATING_AVGS_TOTAL(),
@@ -61,5 +62,32 @@ export class RatingDisplayService {
         return throwError(error);
       })
     );
+  }
+
+  private getRatingCollForRatingQuestion(questionId: number): RatingObjColl {
+    const ratingQuestion = defaults.ratingPairing.find(
+      (pair) => pair.rating_question_id == questionId
+    );
+    const pairedOjbs: RatingObj[] = [];
+    ratingQuestion.paired_questions.forEach((q) => {
+      let myRatingObj: RatingObj = {
+        title: q.paired_question_title,
+        ratingQuestionId: questionId,
+        ratingQuestionIndex: questionId - 1,
+        pairedQuestionId: q.paired_question_id,
+        pairedQuestionIndex: q.paired_question_id - 1,
+      };
+      pairedOjbs.push(myRatingObj);
+    });
+    const ratingObj: RatingObj = {
+      ratingQuestionId: questionId,
+      ratingQuestionIndex: questionId - 1,
+      title: 'Общий ретинг',
+    };
+    const ratingObjColl: RatingObjColl = {
+      paired_rating_objs: pairedOjbs,
+      rating_obj: ratingObj,
+    };
+    return ratingObjColl;
   }
 }

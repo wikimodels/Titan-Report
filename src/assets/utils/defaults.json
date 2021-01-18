@@ -15,5 +15,19 @@
                     "active": "country",
                     "direction": "desc"
                   },
-    "QuestionnaireDbName": "questionnaireDb"
+    "ratingPairing": [
+      {
+        "rating_question_id": 12,
+        "paired_questions": [
+          {
+            "paired_question_id": 1,
+            "paired_question_title": "По полу"
+          },
+          {
+            "paired_question_id": 2,
+            "paired_question_title": "По возрасту"
+          }
+        ]
+      }
+    ]
 }

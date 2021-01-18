@@ -1,25 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, throwError, of, from } from 'rxjs';
-import {
-  catchError,
-  map,
-  tap,
-  finalize,
-  switchMap,
-  shareReplay,
-} from 'rxjs/operators';
-import * as moment from 'moment';
-import { v4 as uuidv4 } from 'uuid';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, shareReplay } from 'rxjs/operators';
 
-import { UserInfo } from 'src/models/user-info.model';
-import { DeviceDetectorService } from 'ngx-device-detector';
-import {
-  Question,
-  Questionnaire,
-  QuestionnaireData,
-  QuestionType,
-} from 'src/models/questionnaire.model';
+import { Questionnaire } from 'src/models/questionnaire.model';
 
 import {
   GET_QUESTIONNAIRE_BY_QID,
@@ -27,11 +11,7 @@ import {
   UPLOAD_TEST_QUESTIONNAIRE,
 } from 'consts/urls.consts';
 
-import { getTestQuestionnaire } from 'consts/test-data-questionnaire';
 import { getPristionQuestionnaire } from 'consts/pristin-questionnaire';
-
-const formatDisplayDate = 'DD-MM-YY';
-const formatDisplayTime = 'HH:mm';
 
 @Injectable({
   providedIn: 'root',

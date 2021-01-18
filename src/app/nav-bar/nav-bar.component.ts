@@ -28,6 +28,6 @@ export class NavBarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.loadingService.loadingOff();
-    }, 2000);
+    }, 3000);
   }
 }

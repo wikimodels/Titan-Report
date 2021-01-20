@@ -19,7 +19,7 @@ export interface Questionnaire {
 export interface Question {
   question_id: number;
   question_type: QuestionType;
-  question_charts?: string[];
+  question_charts?: Chart[];
   question_text: string;
   question_text_answer?: string;
   question_answers?: Answer[];
@@ -44,10 +44,13 @@ export interface Answer {
 export interface Respondents {
   respondents_header?: string;
   respondents_subheader: string;
-  respondents_charts?: string[];
-  respondents_map_chart: string;
+  respondents_charts?: Chart[];
 }
-
+export interface Chart {
+  id: string;
+  type: ChartType;
+  ngClass: string;
+}
 export enum QuestionType {
   RADIO_SINGLE_ANSWER = 'radio-single-answer',
   BUTTON_SINGLE_ANSWER = 'button-single-answer',
@@ -58,4 +61,8 @@ export enum QuestionType {
   IMAGE_MULTI_ANSWER = 'image-multi-answer',
   SPECIAL_IMAGE_MULTI_ANSWER = 'special-image-multi-answer',
   BUTTON_MULTI_ANSWER = 'button-mutli-answer',
+}
+export enum ChartType {
+  STANDART = 'standart-chart',
+  MAP = 'map-chart',
 }

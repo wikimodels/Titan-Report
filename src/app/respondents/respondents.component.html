@@ -1,27 +1,28 @@
-<ng-container *ngIf="questionnaire$ | async as questionnaire">
-  <div class="menu-container">
+<div class="screen">
+  <ng-container *ngIf="questionnaire$ | async as questionnaire">
     <app-nav-bar [respondents]="questionnaire.respondents"></app-nav-bar>
 
     <div
       fxLayout="column"
       fxLayoutAlign="center center"
-      fxLayoutGap.lt-md="25px"
+      fxLayoutGap.lt-lg="25px"
     >
       <app-data-table></app-data-table>
 
       <div
-        fxLayout.lt-md="column"
-        fxLayoutAlign.lt-md="center center"
-        fxLayoutGap.lt-md="25px"
+        fxLayout.lt-lg="column"
+        fxLayoutAlign.lt-lg="center center"
+        fxLayoutGap.lt-lg="25px"
+        fxLayout.gt-md="row wrap"
+        fxLayoutAlign.gt-md="space-between"
       >
         <app-mongodb-chart
-          *ngFor="let chartId of questionnaire.respondents.respondents_charts"
-          [scr]="chartId"
+          *ngFor="let chart of questionnaire.respondents.respondents_charts"
+          [scr]="chart.id"
+          [chartClass]="chart.ngClass"
         ></app-mongodb-chart>
       </div>
-      <app-mongodb-chart
-        [scr]="questionnaire.respondents.respondents_map_chart"
-      ></app-mongodb-chart>
     </div>
-  </div>
-</ng-container>
+    <app-tooltip cdkScrollable></app-tooltip>
+  </ng-container>
+</div>

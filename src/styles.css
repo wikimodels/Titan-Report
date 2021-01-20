@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./media-queries/320-959.css";
+@import "./media-queries/320px-1279px.css";
+@import "./media-queries/1280px-5000px.css";
 @import "./media-queries/fonts.css";
 @import "./media-queries/charts.css";
 html,
@@ -28,8 +29,9 @@ body {
 .mat-card {
   border-radius: 0px !important;
 }
-.nav-icon:hover {
+.menu-item:hover {
   cursor: pointer;
+  background-color: #f5f5f5;
 }
 .list-container {
   padding-bottom: 30px;

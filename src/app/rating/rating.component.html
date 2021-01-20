@@ -1,19 +1,19 @@
-<ng-container *ngIf="this.ratingDisplayView$ | async as ratingDisplayView">
-  <ng-container *ngIf="ratingDisplayView.question !== null">
-    <app-nav-bar [question]="ratingDisplayView.question"></app-nav-bar>
-  </ng-container>
-  <div class="list-container">
-    <div
-      fxLayout.lt-md="column"
-      fxLayoutAlign="center center"
-      fxLayoutGap.lt-md="20px"
-    >
-      <ng-container *ngFor="let dataSource of ratingDisplayView.ratingDisplays">
-        <app-rating-table
-          [dataSource]="dataSource"
-          class="rating-table"
-        ></app-rating-table>
-      </ng-container>
+<div class="screen">
+  <ng-container *ngIf="this.ratingDisplayView$ | async as ratingDisplayView">
+    <ng-container *ngIf="ratingDisplayView.question !== null">
+      <app-nav-bar [question]="ratingDisplayView.question"></app-nav-bar>
+    </ng-container>
+    <div class="list-container">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <ng-container
+          *ngFor="let dataSource of ratingDisplayView.ratingDisplays"
+        >
+          <app-rating-table
+            [dataSource]="dataSource"
+            class="rating-table"
+          ></app-rating-table>
+        </ng-container>
+      </div>
     </div>
-  </div>
-</ng-container>
+  </ng-container>
+</div>

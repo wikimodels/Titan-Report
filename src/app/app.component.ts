@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Route } from '@angular/compiler/src/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NavigationStart, NavigationEnd, Router } from '@angular/router';
 import { QID } from 'consts/urls.consts';
+import { asyncScheduler } from 'rxjs';
+import { filter, scan, observeOn } from 'rxjs/operators';
 import { QuestionnaireService } from './services/questionnaire.service';
 import { TestDataService } from './services/test-data.service';
 
@@ -13,12 +17,12 @@ export class AppComponent implements OnInit {
 
   constructor(
     private questionnaireService: QuestionnaireService,
-    private testS: TestDataService
+    private testS: TestDataService,
+
+    private router: Router
   ) {}
 
-  ngOnInit(): void {
-    //this.questionnaireService.getQuestionnaireByQid(QID());
-  }
+  ngOnInit(): void {}
 
   generateTestData() {
     this.testS.getUserInfo();
@@ -26,4 +30,9 @@ export class AppComponent implements OnInit {
   uploadTestQuestionnaire() {
     this.questionnaireService.uploadTestQuestionnaire();
   }
+  //TODO:button down
+  //TODO:greeting message
+  //TODO:large screens layout
+  //TODO:analytics collector service
+  //TODO:fix restore scroll position on navigation back
 }

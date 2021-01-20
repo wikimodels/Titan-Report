@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,10 +26,13 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CommonModule } from '@angular/common';
 import { ChartsQuestionComponent } from './charts-question/charts-question.component';
 
+import { ScrollListenerDirective } from './directives/scroll-listener.directive';
+import { HighlighterDirective } from './directives/highlighter.directive';
+import { TooltipComponent } from './tooltip/tooltip.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     MenuComponent,
     RespondentsComponent,
     MongodbChartComponent,
@@ -43,6 +45,9 @@ import { ChartsQuestionComponent } from './charts-question/charts-question.compo
     TextAnswerComponent,
     TextAnswerCardComponent,
     ChartsQuestionComponent,
+    ScrollListenerDirective,
+    HighlighterDirective,
+    TooltipComponent,
   ],
   imports: [
     NgbModule,

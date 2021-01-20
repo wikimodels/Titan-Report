@@ -1,12 +1,24 @@
-<ng-container *ngIf="question$ | async as question">
-  <div fxLayout="column" fxLayoutAlign="center start">
-    <app-nav-bar [question]="question"></app-nav-bar>
-  </div>
-  <ng-container *ngIf="question !== null">
-    <app-mongodb-chart
-      *ngFor="let chart of question.question_charts"
-      [scr]="chart"
-    >
-    </app-mongodb-chart>
+<div class="screen" #charts>
+  <ng-container *ngIf="question$ | async as question">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <app-nav-bar [question]="question"></app-nav-bar>
+    </div>
+    <ng-container *ngIf="question !== null">
+      <div
+        fxLayout.lt-lg="column"
+        fxLayoutAlign.lt-lg="center center"
+        fxLayoutGap.lt-lg="25px"
+        fxLayout.gt-md="row wrap"
+        fxLayoutAlign.gt-md="space-between"
+      >
+        <app-mongodb-chart
+          *ngFor="let chart of question.question_charts"
+          [scr]="chart.id"
+          [chartClass]="chart.ngClass"
+        >
+        </app-mongodb-chart>
+      </div>
+    </ng-container>
+    <app-tooltip cdkScrollable></app-tooltip>
   </ng-container>
-</ng-container>
+</div>

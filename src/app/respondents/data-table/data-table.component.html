@@ -18,94 +18,86 @@
   </div>
 </ng-container>
 
+<!-- TABLE -->
 <div
-  fxLayout="row"
-  fxLayout.xs="column"
-  fxFlexAlign="space-between"
-  class="table-controls-container"
+  fxLayout="column"
+  fxLayoutAlign="center space-around"
+  class="table-container mat-elevation-z8"
 >
-  <!-- TABLE -->
-  <div
-    fxLayout="column"
-    fxLayoutAlign="center space-around"
-    class="example-container mat-elevation-z8"
-  >
-    <div class="example-table-container">
-      <table
-        mat-table
-        [dataSource]="groupedRespondents"
-        class="example-table"
-        matSort
-        matSortActive="country"
-        matSortDisableClear
-        matSortDirection="desc"
-        class="data-table"
-      >
-        <!-- FlagUrl Column -->
-        <ng-container matColumnDef="flagUrl">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            width="10%"
-            mat-sort-header
-            disableClear
-            [ngClass]="'small-column'"
-          >
-            #
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <img [src]="row.flagUrl" alt="flag" />
-          </td>
-        </ng-container>
-
-        <!-- Country Column -->
-        <ng-container matColumnDef="country">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            width="10%"
-            mat-sort-header
-            disableClear
-          >
-            <div class="colomn-header">
-              <div>Страна</div>
-            </div>
-          </th>
-          <td mat-cell *matCellDef="let row">{{ row.country }}</td>
-        </ng-container>
-
-        <!-- City Column -->
-        <ng-container matColumnDef="city">
-          <th mat-header-cell *matHeaderCellDef width="10%" mat-sort-header>
-            Город
-          </th>
-          <td mat-cell *matCellDef="let row">{{ row.city }}</td>
-        </ng-container>
-
-        <!-- Count Column -->
-        <ng-container matColumnDef="count">
-          <th
-            mat-header-cell
-            *matHeaderCellDef
-            width="10%"
-            mat-sort-header
-            disableClear
-            [ngClass]="'small-column'"
-          >
-            Кол-во
-          </th>
-          <td mat-cell *matCellDef="let row">{{ row.count }}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-    </div>
-
-    <mat-paginator
+  <div>
+    <table
+      mat-table
+      [dataSource]="groupedRespondents"
+      matSort
+      matSortActive="country"
+      matSortDisableClear
+      matSortDirection="desc"
       class="data-table"
-      [length]="resultsLength"
-      [pageSizeOptions]="[10, 20, 30]"
-    ></mat-paginator>
+    >
+      <!-- FlagUrl Column -->
+      <ng-container matColumnDef="flagUrl">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          width="10%"
+          mat-sort-header
+          disableClear
+          [ngClass]="'small-column'"
+        >
+          #
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <img [src]="row.flagUrl" alt="flag" />
+        </td>
+      </ng-container>
+
+      <!-- Country Column -->
+      <ng-container matColumnDef="country">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          width="10%"
+          mat-sort-header
+          disableClear
+        >
+          <div class="colomn-header">
+            <div>Страна</div>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.country }}</td>
+      </ng-container>
+
+      <!-- City Column -->
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef width="10%" mat-sort-header>
+          Город
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.city }}</td>
+      </ng-container>
+
+      <!-- Count Column -->
+      <ng-container matColumnDef="count">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          width="10%"
+          mat-sort-header
+          disableClear
+          [ngClass]="'small-column'"
+        >
+          Кол-во
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.count }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
   </div>
+
+  <mat-paginator
+    class="data-table"
+    [length]="resultsLength"
+    [pageSizeOptions]="[10, 20, 30]"
+  ></mat-paginator>
 </div>

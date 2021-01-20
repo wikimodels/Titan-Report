@@ -55,8 +55,26 @@
   }
 }
 
-/* Mobile Portraits*/
-@media only screen and (min-device-width: 415px) and (max-device-width: 959px) {
+/* Mobile Portraits & Tablets*/
+@media only screen and (min-device-width: 415px) and (max-device-width: 1279px) {
+  .menu-header {
+    font-size: 20px;
+  }
+  .menu-subheader {
+    font-size: 18px;
+  }
+
+  .nav-bar-title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .nav-bar-subtitle {
+    font-size: 16px;
+    font-weight: 300;
+  }
+}
+
+@media only screen and (min-device-width: 1280px) and (max-device-width: 5000px) {
   .menu-header {
     font-size: 20px;
   }

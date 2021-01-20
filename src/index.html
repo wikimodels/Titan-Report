@@ -4,12 +4,32 @@
     <meta charset="utf-8" />
     <title>Titan Report</title>
     <base href="/" />
-
     <meta
+      data-rh="true"
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      content="width=device-width,minimum-scale=1,initial-scale=1"
     />
-
+    <meta
+      property="og:title"
+      content="Результаты Опроса &#8220;Тренировки и Здоровье Позвоночника и Суставов&#8221;"
+    />
+    <meta
+      property="og:description"
+      content="Сайт содержит подробный анализ данных, собранных в результате опроса"
+    />
+    <meta property="og:site_name" content="Titan Survey" />
+    <meta
+      property="og:image"
+      content="https://titan-report.web.app/assets/images/open-graph.jpg"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://titan-report.web.app" />
+    <meta
+      data-rh="true"
+      name="parsely-link"
+      content="https://titan-report.web.app"
+    />
+    <meta property="og:locale" content="ru_RU" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
@@ -28,7 +48,7 @@
       rel="stylesheet"
     />
   </head>
-  <body class="mat-typography">
+  <body class="mat-typography" appScrollListener>
     <app-root></app-root>
   </body>
 </html>

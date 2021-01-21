@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { RespondentsChartsService } from '../services/respondents/respondents-charts.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { LoadingService } from '../services/shared/loading.service';
@@ -9,6 +9,8 @@ import { Questionnaire } from 'src/models/questionnaire.model';
 import { Observable } from 'rxjs';
 import { QuestionnaireService } from '../services/questionnaire.service';
 import { QID } from 'consts/urls.consts';
+import { VisitationStatsService } from '../services/visitation-stats/visitation-stats.service';
+import { VisitationPageType } from 'src/models/user/visitation-stats';
 
 @Component({
   selector: 'app-respondents',
@@ -16,18 +18,23 @@ import { QID } from 'consts/urls.consts';
   styleUrls: ['./respondents.component.css'],
   providers: [LoadingService],
 })
-export class RespondentsComponent implements OnInit, AfterViewInit {
+export class RespondentsComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private respondentsService: RespondentsChartsService,
     private questionnaireService: QuestionnaireService,
     public loadingService: LoadingService,
-    private router: Router
+    private router: Router,
+    private visitationStatsService: VisitationStatsService
   ) {}
 
   questionnaire$: Observable<Questionnaire>;
+  visitationStats = this.visitationStatsService.setVisitationStats(
+    0,
+    VisitationPageType.RESPONDENTS
+  );
 
   ngOnInit(): void {
-    this.questionnaire$ = this.questionnaireService.questionnaire$();
+    this.questionnaire$ = this.questionnaireService.questionnaire$;
     this.loadingService.loadingOn();
     this.respondentsService.getGroupedRespondents();
   }
@@ -38,5 +45,8 @@ export class RespondentsComponent implements OnInit, AfterViewInit {
   }
   goHome() {
     this.router.navigate([MENU]);
+  }
+  ngOnDestroy() {
+    this.visitationStatsService.saveVisitationStats(this.visitationStats);
   }
 }

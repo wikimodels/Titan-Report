@@ -3,8 +3,3 @@ export interface ChartDisplay {
   width?: string;
   height?: string;
 }
-
-export interface ChartsIds {
-  question_id: number;
-  chartsIds: string[];
-}

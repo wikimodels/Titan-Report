@@ -11,6 +11,7 @@ import {
 } from 'src/models/questionnaire.model';
 import { QuestionnaireService } from '../services/questionnaire.service';
 import { LoadingService } from '../services/shared/loading.service';
+import { VisitationStatsService } from '../services/visitation-stats/visitation-stats.service';
 
 @Component({
   selector: 'app-menu',
@@ -21,14 +22,13 @@ export class MenuComponent implements OnInit, AfterViewInit {
   constructor(
     private questionnaireService: QuestionnaireService,
     private router: Router,
-    //public deviceDetectorService: DeviceDetectorService,
     public loadingService: LoadingService
   ) {}
 
   questionnaire$: Observable<Questionnaire>;
   ngOnInit(): void {
     this.loadingService.loadingOn();
-    this.questionnaire$ = this.questionnaireService.questionnaire$();
+    this.questionnaire$ = this.questionnaireService.questionnaire$;
   }
   ngAfterViewInit(): void {
     setTimeout(() => {

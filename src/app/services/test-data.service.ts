@@ -8,7 +8,7 @@ import {
 } from 'consts/urls.consts';
 import { catchError, map, tap, finalize, switchMap } from 'rxjs/operators';
 
-import { UserInfo } from 'src/models/user-info.model';
+import { UserInfo } from 'src/models/user/user-info.model';
 import { getTestIps } from 'consts/test-ip-data';
 import { Questionnaire, QuestionType } from 'src/models/questionnaire.model';
 import { getPristionQuestionnaire } from 'consts/pristin-questionnaire';

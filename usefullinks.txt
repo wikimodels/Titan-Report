@@ -24,3 +24,14 @@ https://www.quirksmode.org/blog/archives/2010/04/the_orientation.html
 
 Star Rating
 https://www.positronx.io/angular-star-rating-example-tutorial/
+
+Mat Tool Tip Example
+https://www.xspdf.com/resolution/57150283.html
+https://www.freakyjolly.com/angular-ng-bootstrap-tooltip-tutorial/
+
+ANGULA notifications
+https://artemsky.github.io/ng-snotify/
+
+30 BEST ANGULAR FRAMEWORKS SOLuTIONS
+https://www.akveo.com/blog/the-best-30-angular-components-2020-to-build-cool-web-solutions
+

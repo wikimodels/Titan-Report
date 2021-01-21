@@ -1,4 +1,4 @@
-import { UserInfo } from './user-info.model';
+import { UserInfo } from './user/user-info.model';
 
 export interface QuestionnaireData {
   questionnaire: Questionnaire;

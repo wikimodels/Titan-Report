@@ -33,6 +33,7 @@ export class RatingDisplayService {
       ratingObjs.paired_rating_objs
     );
     const question$ = this.http.get<any>(GET_QUESTIONNAIRE_BY_QID(QID())).pipe(
+      shareReplay(1),
       map((questionnoire: Questionnaire) => {
         const question: Question = questionnoire.questions.find(
           (q) => q.question_id === questionId

@@ -17,17 +17,3 @@ export interface Location {
   type: string;
   coordinates: number[];
 }
-
-export interface AnsweredUser {
-  flagUrl: string;
-  ip: string;
-  country: string;
-  city: string;
-}
-
-export interface AnsweredGroupedUser {
-  flagUrl: string;
-  country: string;
-  city: string;
-  count: number;
-}

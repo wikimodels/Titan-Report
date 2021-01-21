@@ -1,44 +1,50 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { ActivatedRoute } from '@angular/router';
 import { QID } from 'consts/urls.consts';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Question, Questionnaire } from 'src/models/questionnaire.model';
-
+import * as moment from 'moment';
 import { QuestionnaireService } from '../services/questionnaire.service';
+import { VisitationStatsService } from '../services/visitation-stats/visitation-stats.service';
+import {
+  VisitationPageType,
+  VisitationStats,
+} from 'src/models/user/visitation-stats';
+import { UserInfoService } from '../services/visitation-stats/user-info.service';
 
 @Component({
   selector: 'app-charts-question',
   templateUrl: './charts-question.component.html',
   styleUrls: ['./charts-question.component.css'],
 })
-export class ChartsQuestionComponent implements OnInit {
-  toolTips = 'ttt';
+export class ChartsQuestionComponent implements OnInit, OnDestroy {
   question$: Observable<Question>;
   @ViewChild('charts') chartsContainer: ElementRef;
   constructor(
     private questionnaireService: QuestionnaireService,
     private route: ActivatedRoute,
-    private scrollDispatcher: ScrollDispatcher
+    private visitationStatsService: VisitationStatsService
   ) {}
 
-  buttonClass = 'jumpy-button';
+  questionId = +this.route.snapshot.params['question_id'];
+  visitationStats = this.visitationStatsService.setVisitationStats(
+    this.questionId,
+    VisitationPageType.QUESTION
+  );
+
   ngOnInit(): void {
-    this.question$ = this.questionnaireService.question$(
-      +this.route.snapshot.params['question_id']
-    );
-    // this.scrollDispatcher
-    //   .scrolled()
-    //   .subscribe((x) => console.log('I am scrolling'));
+    this.question$ = this.questionnaireService.question$(this.questionId);
   }
-  scrollToBottom() {
-    this.buttonClass = 'clicked-bottom';
-    console.log('clicked');
-    console.log(this.chartsContainer.nativeElement.scrollHeight);
-    window.scrollTo({
-      top: this.chartsContainer.nativeElement.scrollHeight,
-      behavior: 'smooth',
-    });
+
+  ngOnDestroy() {
+    this.visitationStatsService.saveVisitationStats(this.visitationStats);
   }
 }

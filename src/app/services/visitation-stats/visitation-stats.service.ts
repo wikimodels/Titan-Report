@@ -53,6 +53,7 @@ export class VisitationStatsService {
   ) {}
 
   saveVisitationStats(visitationStats: VisitationStats) {
+    visitationStats.userInfo = this.userInfoService.getUserInfoSubj();
     visitationStats.leave_date = Date.now();
     visitationStats.stay_duraion = this.calculateStayDuration(visitationStats);
     this.postVisitationStats(visitationStats);
@@ -76,15 +77,12 @@ export class VisitationStatsService {
   ): VisitationStats {
     let pageName =
       questionId === 0 ? pageType : pageType + questionId.toString();
-    console.log('page name', pageName);
-    console.log('page type', pageType);
-    console.log('page id', questionId);
+
     const visitationStats: VisitationStats = {
-      userInfo: this.userInfoService.getUserInfoSubj(),
       enter_date: Date.now(),
       page_name: pageName,
     };
-    console.log(visitationStats);
+
     return visitationStats;
   }
 

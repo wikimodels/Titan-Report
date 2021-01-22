@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>
+  Привет! <span style="font-size: 18px">Вы зашли с мобильного устройства!</span>
+</h1>
+<div mat-dialog-content>
+  <p>
+    Графики маскимально адаптированы для экранов мобильных устройств, но
+    некоторые из них лучше смотрятся на экранах больших размеров!
+  </p>
+  <p>Используйте ландшафтный режим для большей наглядности!</p>
+  <p>"Кликайте" графики для получения дополнительной иформации!</p>
+
+  <div class="v-align-middle">
+    <mat-checkbox
+      labelPosition="before"
+      [(ngModel)]="checked"
+      [checked]="checked"
+      ><span style="font-size: 15px; font-weight: 300"
+        ><i>больше не показывать</i></span
+      >
+    </mat-checkbox>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="checked">Ok</button>
+</div>

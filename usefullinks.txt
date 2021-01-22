@@ -35,3 +35,5 @@ https://artemsky.github.io/ng-snotify/
 30 BEST ANGULAR FRAMEWORKS SOLuTIONS
 https://www.akveo.com/blog/the-best-30-angular-components-2020-to-build-cool-web-solutions
 
+Modal Dialog
+https://www.ahmedbouchefra.com/angular-material-modal/

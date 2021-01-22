@@ -13,12 +13,10 @@ export class LoadingService {
   showLoaderUntilCompleted<T>(obs$: Observable<T>): Observable<T> {
     return of(null).pipe(
       tap(() => {
-        console.log('Loading is On');
         this.loadingOn();
       }),
       concatMap(() => obs$),
       finalize(() => {
-        console.log('Loading is Off');
         this.loadingOff();
       })
     );
@@ -26,11 +24,9 @@ export class LoadingService {
 
   loadingOn() {
     this.loadingSubject.next(true);
-    console.log('LOADING_Service ON');
   }
 
   loadingOff() {
     this.loadingSubject.next(false);
-    console.log('LOADING_Service OFF');
   }
 }

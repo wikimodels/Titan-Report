@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   OnDestroy,
@@ -19,19 +20,22 @@ import {
   VisitationStats,
 } from 'src/models/user/visitation-stats';
 import { UserInfoService } from '../services/visitation-stats/user-info.service';
+import { ScrollTopService } from '../services/shared/scroll-to-top.service';
 
 @Component({
   selector: 'app-charts-question',
   templateUrl: './charts-question.component.html',
   styleUrls: ['./charts-question.component.css'],
 })
-export class ChartsQuestionComponent implements OnInit, OnDestroy {
+export class ChartsQuestionComponent
+  implements OnInit, OnDestroy, AfterViewInit {
   question$: Observable<Question>;
   @ViewChild('charts') chartsContainer: ElementRef;
   constructor(
     private questionnaireService: QuestionnaireService,
     private route: ActivatedRoute,
-    private visitationStatsService: VisitationStatsService
+    private visitationStatsService: VisitationStatsService,
+    private scrollToTopService: ScrollTopService
   ) {}
 
   questionId = +this.route.snapshot.params['question_id'];
@@ -44,6 +48,9 @@ export class ChartsQuestionComponent implements OnInit, OnDestroy {
     this.question$ = this.questionnaireService.question$(this.questionId);
   }
 
+  ngAfterViewInit() {
+    //this.scrollToTopService.setScrollTop();
+  }
   ngOnDestroy() {
     this.visitationStatsService.saveVisitationStats(this.visitationStats);
   }

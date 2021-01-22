@@ -20,7 +20,6 @@ export class DataTableService {
       paginatorPage$.pipe(startWith(defaults.sortedItem))
     ).pipe(
       map((value) => {
-        console.log('RESPONDENTS', value);
         let [respondentsApi, page, sort] = value;
 
         const prop = sort['active'] === 'flagUrl' ? 'country' : sort['active'];

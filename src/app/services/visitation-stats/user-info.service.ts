@@ -73,7 +73,6 @@ export class UserInfoService {
         }),
         map((value: UserInfo) => {
           const deviceInfo = this.deviceService.getDeviceInfo();
-          console.log('UI', deviceInfo);
           value.location = {
             type: 'Point',
             coordinates: [value.lon, value.lat],

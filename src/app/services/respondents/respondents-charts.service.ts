@@ -37,7 +37,6 @@ export class RespondentsChartsService {
         })
       )
       .subscribe((value: GroupedRespondent[]) => {
-        console.log('Groupped resp', value);
         const obj: GroupedRespondentsApi = {
           groupedRespondents: value,
           groupedRespondentsCount: value.length,

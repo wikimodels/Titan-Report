@@ -21,7 +21,6 @@ export class TooltipComponent implements OnInit, AfterViewInit {
   constructor(private scrollDispatcher: ScrollDispatcher) {
     this.scrollDispatcher.scrolled().subscribe((x) => {
       this.mytooltip.close();
-      console.log(x);
     });
   }
 

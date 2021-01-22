@@ -29,6 +29,8 @@ import { ChartsQuestionComponent } from './charts-question/charts-question.compo
 import { ScrollListenerDirective } from './directives/scroll-listener.directive';
 import { HighlighterDirective } from './directives/highlighter.directive';
 import { TooltipComponent } from './tooltip/tooltip.component';
+import { CookieService } from 'ngx-cookie-service';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
     ScrollListenerDirective,
     HighlighterDirective,
     TooltipComponent,
+    ModalComponent,
   ],
   imports: [
     NgbModule,
@@ -63,7 +66,8 @@ import { TooltipComponent } from './tooltip/tooltip.component';
     InfiniteScrollModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
+  entryComponents: [ModalComponent],
 })
 export class AppModule {}

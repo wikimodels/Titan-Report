@@ -1,0 +1,6 @@
+p {
+  font-weight: 300;
+}
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: whitesmoke;
+}

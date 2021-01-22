@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CHARTS_QUESTION, RESPONDENTS } from 'consts/routes.consts';
 import { QID } from 'consts/urls.consts';
+import { CookieService } from 'ngx-cookie-service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Observable } from 'rxjs';
 import {
@@ -22,6 +23,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
   constructor(
     private questionnaireService: QuestionnaireService,
     private router: Router,
+    private cookieService: CookieService,
     public loadingService: LoadingService
   ) {}
 
@@ -31,10 +33,12 @@ export class MenuComponent implements OnInit, AfterViewInit {
     this.questionnaire$ = this.questionnaireService.questionnaire$;
   }
   ngAfterViewInit(): void {
+    window.scrollTo({ top: +this.cookieService.get('top') });
     setTimeout(() => {
       this.loadingService.loadingOff();
     }, 0);
   }
+
   goToQuestionDisplay(question: Question) {
     let url;
     switch (question.question_type) {
@@ -48,10 +52,13 @@ export class MenuComponent implements OnInit, AfterViewInit {
         url = CHARTS_QUESTION + '/' + question.question_id;
         break;
     }
+    console.log('SCROLL', window.scrollY);
+    this.cookieService.set('top', window.scrollY.toString());
     this.router.navigate([url]);
   }
 
   goToRespondents() {
+    this.cookieService.set('top', window.scrollY.toString());
     this.router.navigate([RESPONDENTS]);
   }
 }

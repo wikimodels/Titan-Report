@@ -70,7 +70,6 @@ export class DataTableComponent implements OnInit, AfterViewInit {
         this.sort.sortChange
       )
       .subscribe((value: GroupedRespondentsApi) => {
-        console.log('Combined VAlue', value);
         setTimeout(() => {
           this.groupedRespondents = value.groupedRespondents;
           this.resultsLength = value.groupedRespondentsCount;

@@ -36,3 +36,10 @@ body {
 .list-container {
   padding-bottom: 30px;
 }
+.custom-modalbox > mat-dialog-container {
+  background-color: #ac5c7f;
+  color: whitesmoke;
+}
+.v-align-middle {
+  vertical-align: middle;
+}

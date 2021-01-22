@@ -31,6 +31,7 @@ import { HighlighterDirective } from './directives/highlighter.directive';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ModalComponent } from './modal/modal.component';
+import { ButtonDownComponent } from './button-down/button-down.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ModalComponent } from './modal/modal.component';
     HighlighterDirective,
     TooltipComponent,
     ModalComponent,
+    ButtonDownComponent,
   ],
   imports: [
     NgbModule,

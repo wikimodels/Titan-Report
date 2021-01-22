@@ -1,9 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CHARTS_QUESTION, RESPONDENTS } from 'consts/routes.consts';
-import { QID } from 'consts/urls.consts';
 import { CookieService } from 'ngx-cookie-service';
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { Observable } from 'rxjs';
 import {
   Question,
@@ -12,7 +10,6 @@ import {
 } from 'src/models/questionnaire.model';
 import { QuestionnaireService } from '../services/questionnaire.service';
 import { LoadingService } from '../services/shared/loading.service';
-import { VisitationStatsService } from '../services/visitation-stats/visitation-stats.service';
 
 @Component({
   selector: 'app-menu',
@@ -52,8 +49,8 @@ export class MenuComponent implements OnInit, AfterViewInit {
         url = CHARTS_QUESTION + '/' + question.question_id;
         break;
     }
-    console.log('SCROLL', window.scrollY);
-    this.cookieService.set('top', window.scrollY.toString());
+    // console.log('SCROLL', window.scrollY);
+    //this.cookieService.set('top', window.scrollY.toString());
     this.router.navigate([url]);
   }
 

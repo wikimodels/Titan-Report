@@ -10,6 +10,7 @@
         fxLayoutGap.lt-lg="25px"
         fxLayout.gt-md="row wrap"
         fxLayoutAlign.gt-md="space-between"
+        #chars
       >
         <app-mongodb-chart
           *ngFor="let chart of question.question_charts"
@@ -19,6 +20,6 @@
         </app-mongodb-chart>
       </div>
     </ng-container>
-    <app-tooltip cdkScrollable></app-tooltip>
+    <app-button-down></app-button-down>
   </ng-container>
 </div>

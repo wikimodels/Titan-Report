@@ -24,6 +24,7 @@ export class RespondentsComponent implements OnInit, AfterViewInit, OnDestroy {
     private questionnaireService: QuestionnaireService,
     public loadingService: LoadingService,
     private router: Router,
+    //private scrollToTopService: ScrollTopService,
     private visitationStatsService: VisitationStatsService
   ) {}
 
@@ -39,6 +40,8 @@ export class RespondentsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.respondentsService.getGroupedRespondents();
   }
   ngAfterViewInit() {
+    //this.scrollToTopService.setScrollTop();
+
     setTimeout(() => {
       this.loadingService.loadingOff();
     }, 6000);

@@ -1,10 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QID } from 'consts/urls.consts';
 
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Question, Questionnaire } from 'src/models/questionnaire.model';
+import { Question } from 'src/models/questionnaire.model';
 import { TextAnswerQuestion } from 'src/models/text-answer/text-answer-question';
 import { VisitationPageType } from 'src/models/user/visitation-stats';
 import { QuestionnaireService } from '../services/questionnaire.service';
@@ -16,7 +14,7 @@ import { VisitationStatsService } from '../services/visitation-stats/visitation-
   templateUrl: './text-answer.component.html',
   styleUrls: ['./text-answer.component.css'],
 })
-export class TextAnswerComponent implements OnInit, OnDestroy {
+export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
   question$: Observable<Question>;
   textAnswerQuestions: TextAnswerQuestion[] = [];
   skip = 0;
@@ -33,6 +31,7 @@ export class TextAnswerComponent implements OnInit, OnDestroy {
     private textAnswerService: TextAnswerService,
     private questionnaireService: QuestionnaireService,
     private route: ActivatedRoute,
+    //private scrollToTopService: ScrollTopService,
     private visitationStatsService: VisitationStatsService
   ) {}
 
@@ -62,6 +61,9 @@ export class TextAnswerComponent implements OnInit, OnDestroy {
     );
   }
 
+  ngAfterViewInit() {
+    //this.scrollToTopService.setScrollTop();
+  }
   onScroll() {
     const textAnswerQuestionsCount = this.textAnswerQuestions.length;
     if (textAnswerQuestionsCount < this.collectionTotalCount) {

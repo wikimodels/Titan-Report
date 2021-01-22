@@ -43,3 +43,12 @@ body {
 .v-align-middle {
   vertical-align: middle;
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 766px) {
+  .tooltip {
+    position: fixed;
+    outline: none;
+    right: 40px;
+    bottom: 20px;
+  }
+}

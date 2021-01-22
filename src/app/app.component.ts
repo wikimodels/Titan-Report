@@ -1,23 +1,8 @@
-import { ViewportScroller } from '@angular/common';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { NavigationStart, NavigationEnd, Router } from '@angular/router';
-import { QID } from 'consts/urls.consts';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { asyncScheduler, interval } from 'rxjs';
-import { filter, scan, observeOn, takeWhile } from 'rxjs/operators';
 import { VisitationPageType } from 'src/models/user/visitation-stats';
 import { QuestionnaireService } from './services/questionnaire.service';
 import { TestDataService } from './services/test-data.service';
@@ -42,7 +27,6 @@ export class AppComponent implements OnInit {
     private questionnaireService: QuestionnaireService,
     private testS: TestDataService,
     private visitationStatsService: VisitationStatsService,
-    private router: Router,
     private cookieService: CookieService,
     private userInfoService: UserInfoService,
     public dialog: MatDialog,
@@ -53,14 +37,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     let intro = this.cookieService.get('intro');
-
     if (
       (this.deviceDetectorService.isMobile() && intro === '') ||
       intro === 'false'
     ) {
       this.openDialog();
     }
-    this.cookieService.set('top', '0');
+    //this.cookieService.delete('top');
   }
 
   generateTestData() {

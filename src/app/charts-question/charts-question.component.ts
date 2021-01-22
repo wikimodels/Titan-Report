@@ -34,8 +34,7 @@ export class ChartsQuestionComponent
   constructor(
     private questionnaireService: QuestionnaireService,
     private route: ActivatedRoute,
-    private visitationStatsService: VisitationStatsService,
-    private scrollToTopService: ScrollTopService
+    private visitationStatsService: VisitationStatsService
   ) {}
 
   questionId = +this.route.snapshot.params['question_id'];
@@ -48,9 +47,7 @@ export class ChartsQuestionComponent
     this.question$ = this.questionnaireService.question$(this.questionId);
   }
 
-  ngAfterViewInit() {
-    //this.scrollToTopService.setScrollTop();
-  }
+  ngAfterViewInit() {}
   ngOnDestroy() {
     this.visitationStatsService.saveVisitationStats(this.visitationStats);
   }

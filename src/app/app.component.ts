@@ -8,11 +8,11 @@ import { QuestionnaireService } from './services/questionnaire.service';
 import { TestDataService } from './services/test-data.service';
 import { UserInfoService } from './services/visitation-stats/user-info.service';
 import { VisitationStatsService } from './services/visitation-stats/visitation-stats.service';
-import { ModalComponent } from './modal/modal.component';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 import { BasicSnackbarService } from './basic-snackbar/basic-snackbar.service';
 import { MessageType } from './basic-snackbar/models/message-type';
+import { IntroModalComponent } from './intro-modal/intro-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -27,12 +27,13 @@ export class AppComponent implements OnInit {
     VisitationPageType.MAIN
   );
   constructor(
+    readonly dialog: MatDialog,
     private questionnaireService: QuestionnaireService,
     private testS: TestDataService,
     private visitationStatsService: VisitationStatsService,
     private cookieService: CookieService,
     private userInfoService: UserInfoService,
-    public dialog: MatDialog,
+
     private snackbarService: BasicSnackbarService,
     private deviceDetectorService: DeviceDetectorService
   ) {
@@ -47,7 +48,6 @@ export class AppComponent implements OnInit {
     ) {
       this.openDialog();
     }
-    //this.cookieService.delete('top');
   }
 
   generateTestData() {
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
     this.questionnaireService.uploadTestQuestionnaire();
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(ModalComponent, {
+    const dialogRef = this.dialog.open(IntroModalComponent, {
       width: '90%',
       data: {},
       panelClass: 'custom-modalbox',

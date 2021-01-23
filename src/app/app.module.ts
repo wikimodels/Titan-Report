@@ -30,9 +30,10 @@ import { ScrollListenerDirective } from './directives/scroll-listener.directive'
 import { HighlighterDirective } from './directives/highlighter.directive';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { CookieService } from 'ngx-cookie-service';
-import { ModalComponent } from './modal/modal.component';
 import { ButtonDownComponent } from './button-down/button-down.component';
 import { BasicSnackbarModule } from './basic-snackbar/basic-snackbar.module';
+
+import { IntroModalComponent } from './intro-modal/intro-modal.component';
 
 @NgModule({
   declarations: [
@@ -52,12 +53,13 @@ import { BasicSnackbarModule } from './basic-snackbar/basic-snackbar.module';
     ScrollListenerDirective,
     HighlighterDirective,
     TooltipComponent,
-    ModalComponent,
     ButtonDownComponent,
+    IntroModalComponent,
   ],
   imports: [
     NgbModule,
     FormsModule,
+
     CommonModule,
     BrowserModule,
     BrowserModule,
@@ -72,7 +74,7 @@ import { BasicSnackbarModule } from './basic-snackbar/basic-snackbar.module';
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
-  entryComponents: [ModalComponent],
+  entryComponents: [IntroModalComponent],
   exports: [],
 })
 export class AppModule {}

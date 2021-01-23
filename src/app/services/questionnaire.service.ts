@@ -15,8 +15,6 @@ import {
 import { getPristionQuestionnaire } from 'consts/pristin-questionnaire';
 import { SlackMessage } from 'src/models/slack-message';
 
-import { MessageType } from 'src/models/message-types.model';
-
 @Injectable({
   providedIn: 'root',
 })

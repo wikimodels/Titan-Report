@@ -10,8 +10,9 @@ import { UserInfoService } from './services/visitation-stats/user-info.service';
 import { VisitationStatsService } from './services/visitation-stats/visitation-stats.service';
 import { ModalComponent } from './modal/modal.component';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { MessageType } from 'src/models/message-types.model';
+
 import { BasicSnackbarService } from './basic-snackbar/basic-snackbar.service';
+import { MessageType } from './basic-snackbar/models/message-type';
 
 @Component({
   selector: 'app-root',

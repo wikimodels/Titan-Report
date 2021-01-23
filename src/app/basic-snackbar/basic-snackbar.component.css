@@ -10,3 +10,6 @@
 .mat-icon-button {
   outline: none;
 }
+.snackbar {
+  width: 100%;
+}

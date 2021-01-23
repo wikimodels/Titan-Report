@@ -7,7 +7,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { BasicSnackbarComponent } from 'src/app/basic-snackbar/basic-snackbar.component';
-import { MessageType } from 'src/models/message-types.model';
+import { MessageType } from './models/message-type';
 
 @Injectable({
   providedIn: 'root',

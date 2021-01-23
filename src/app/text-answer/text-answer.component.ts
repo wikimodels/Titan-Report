@@ -80,6 +80,4 @@ export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.textAnswerSub.unsubscribe();
     this.visitationStatsService.saveVisitationStats(this.visitationStats);
   }
-
-  //TODO: check labes in mongodb charts!
 }

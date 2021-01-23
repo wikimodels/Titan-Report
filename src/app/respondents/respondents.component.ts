@@ -11,6 +11,7 @@ import { QuestionnaireService } from '../services/questionnaire.service';
 import { QID } from 'consts/urls.consts';
 import { VisitationStatsService } from '../services/visitation-stats/visitation-stats.service';
 import { VisitationPageType } from 'src/models/user/visitation-stats';
+import * as defaults from '../../assets/utils/defaults.json';
 
 @Component({
   selector: 'app-respondents',
@@ -24,10 +25,10 @@ export class RespondentsComponent implements OnInit, AfterViewInit, OnDestroy {
     private questionnaireService: QuestionnaireService,
     public loadingService: LoadingService,
     private router: Router,
-    //private scrollToTopService: ScrollTopService,
     private visitationStatsService: VisitationStatsService
   ) {}
 
+  elementHeight = defaults.respondentsElementHeight;
   questionnaire$: Observable<Questionnaire>;
   visitationStats = this.visitationStatsService.setVisitationStats(
     0,

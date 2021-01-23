@@ -12,6 +12,8 @@ export class ButtonDownComponent implements OnInit {
   ngOnInit(): void {}
 
   goToBottom() {
-    window.scrollTo({ top: 4300, behavior: 'smooth' });
+    console.log('currentHeight', window.innerHeight);
+    this.elementHeight = this.elementHeight + 4000;
+    window.scrollTo({ top: this.elementHeight, behavior: 'smooth' });
   }
 }

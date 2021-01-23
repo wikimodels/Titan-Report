@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { Observable, Subscription } from 'rxjs';
 import { Question } from 'src/models/questionnaire.model';
 import { TextAnswerQuestion } from 'src/models/text-answer/text-answer-question';
@@ -8,6 +7,7 @@ import { VisitationPageType } from 'src/models/user/visitation-stats';
 import { QuestionnaireService } from '../services/questionnaire.service';
 import { TextAnswerService } from '../services/text-answer.service';
 import { VisitationStatsService } from '../services/visitation-stats/visitation-stats.service';
+import * as defaults from '../../assets/utils/defaults.json';
 
 @Component({
   selector: 'app-text-answer',
@@ -19,6 +19,7 @@ export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
   textAnswerQuestions: TextAnswerQuestion[] = [];
   skip = 0;
   limit = 20;
+  elementHeight = defaults.textElementHeight;
   collectionTotalCount = 0;
   questionId = +this.route.snapshot.params['question_id'];
   visitationStats = this.visitationStatsService.setVisitationStats(
@@ -61,9 +62,7 @@ export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  ngAfterViewInit() {
-    //this.scrollToTopService.setScrollTop();
-  }
+  ngAfterViewInit() {}
   onScroll() {
     const textAnswerQuestionsCount = this.textAnswerQuestions.length;
     if (textAnswerQuestionsCount < this.collectionTotalCount) {
@@ -84,6 +83,6 @@ export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //TODO: fix button-down functionality
   //TODO: finish slack logging
-  //TODO: implement popup bar
+
   //TODO: check labes in mongodb charts!
 }

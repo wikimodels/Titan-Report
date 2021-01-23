@@ -15,6 +15,7 @@ import { Question, Questionnaire } from 'src/models/questionnaire.model';
 import * as moment from 'moment';
 import { QuestionnaireService } from '../services/questionnaire.service';
 import { VisitationStatsService } from '../services/visitation-stats/visitation-stats.service';
+import * as defaults from '../../assets/utils/defaults.json';
 import {
   VisitationPageType,
   VisitationStats,
@@ -30,6 +31,7 @@ import { ScrollTopService } from '../services/shared/scroll-to-top.service';
 export class ChartsQuestionComponent
   implements OnInit, OnDestroy, AfterViewInit {
   question$: Observable<Question>;
+  elementHeight = defaults.chartsElementHeight;
   @ViewChild('charts') chartsContainer: ElementRef;
   constructor(
     private questionnaireService: QuestionnaireService,

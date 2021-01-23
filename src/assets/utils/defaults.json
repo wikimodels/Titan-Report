@@ -30,5 +30,8 @@
         ]
       }
     ],
-    "tooltipText": "Внизу больше контента"
+    "tooltipText": "Внизу больше контента",
+    "chartsElementHeight": 300,
+    "respondentsElementHeight": 300,
+    "textElementHeight": 300
 }

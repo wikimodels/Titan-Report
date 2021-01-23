@@ -81,4 +81,9 @@ export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.textAnswerSub.unsubscribe();
     this.visitationStatsService.saveVisitationStats(this.visitationStats);
   }
+
+  //TODO: fix button-down functionality
+  //TODO: finish slack logging
+  //TODO: implement popup bar
+  //TODO: check labes in mongodb charts!
 }

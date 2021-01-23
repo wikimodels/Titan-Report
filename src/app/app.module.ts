@@ -32,6 +32,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ModalComponent } from './modal/modal.component';
 import { ButtonDownComponent } from './button-down/button-down.component';
+import { BasicSnackbarModule } from './basic-snackbar/basic-snackbar.module';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ButtonDownComponent } from './button-down/button-down.component';
     HttpClientModule,
     AppRoutingModule,
     AppMaterialModule,
+    BasicSnackbarModule,
     ReactiveFormsModule,
     InfiniteScrollModule,
     BrowserAnimationsModule,
@@ -71,5 +73,6 @@ import { ButtonDownComponent } from './button-down/button-down.component';
   providers: [CookieService],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent],
+  exports: [],
 })
 export class AppModule {}

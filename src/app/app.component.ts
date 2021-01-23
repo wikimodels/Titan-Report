@@ -10,6 +10,8 @@ import { UserInfoService } from './services/visitation-stats/user-info.service';
 import { VisitationStatsService } from './services/visitation-stats/visitation-stats.service';
 import { ModalComponent } from './modal/modal.component';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { MessageType } from 'src/models/message-types.model';
+import { BasicSnackbarService } from './basic-snackbar/basic-snackbar.service';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +32,7 @@ export class AppComponent implements OnInit {
     private cookieService: CookieService,
     private userInfoService: UserInfoService,
     public dialog: MatDialog,
+    private snackbarService: BasicSnackbarService,
     private deviceDetectorService: DeviceDetectorService
   ) {
     this.userInfoService.getUserInfo();
@@ -47,7 +50,8 @@ export class AppComponent implements OnInit {
   }
 
   generateTestData() {
-    this.testS.getUserInfo();
+    this.snackbarService.open('Fuck', MessageType.WARNING);
+    //this.testS.getUserInfo();
   }
   uploadTestQuestionnaire() {
     this.questionnaireService.uploadTestQuestionnaire();

@@ -37,3 +37,12 @@ https://www.akveo.com/blog/the-best-30-angular-components-2020-to-build-cool-web
 
 Modal Dialog
 https://www.ahmedbouchefra.com/angular-material-modal/
+
+
+
+Angular 10 Tutorial & Example — Upload Files with FormData, HttpClient, RxJS, and Material ProgressBar
+https://www.ahmedbouchefra.com/angular-tutorial-example-upload-files-with-formdata-httpclient-rxjs-and-material-progressbar/
+
+Силуэты качков
+https://www.google.com/imgres?imgurl=http%3A%2F%2Fwww.pngall.com%2Fwp-content%2Fuploads%2F2%2FBodybuilding-PNG-Free-Image.png&imgrefurl=http%3A%2F%2Fwww.pngall.com%2Fbodybuilding-png%2Fdownload%2F27215&tbnid=gLYxNgZtMqGETM&vet=10CAMQxiAoAGoXChMI0MKK_OKx7gIVAAAAAB0AAAAAEAI..i&docid=gZcC8YnOAxIIuM&w=512&h=512&itg=1&q=biceps%20icon%20svg&client=opera&ved=0CAMQxiAoAGoXChMI0MKK_OKx7gIVAAAAAB0AAAAAEAI
+

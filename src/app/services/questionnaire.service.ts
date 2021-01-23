@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, shareReplay } from 'rxjs/operators';
+import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 
 import { Question, Questionnaire } from 'src/models/questionnaire.model';
 
 import {
   GET_QUESTIONNAIRE_BY_QID,
+  REPORT_LOG_CHANNEL,
   QID,
   UPLOAD_TEST_QUESTIONNAIRE,
 } from 'consts/urls.consts';
 
 import { getPristionQuestionnaire } from 'consts/pristin-questionnaire';
+import { SlackMessage } from 'src/models/slack-message';
+
+import { MessageType } from 'src/models/message-types.model';
 
 @Injectable({
   providedIn: 'root',

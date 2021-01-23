@@ -1,0 +1,56 @@
+1. in app.module.ts
+imports: [
+  ...
+    SnotifyModule,
+    ...
+  ],
+  providers: [
+    CookieService,
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService,
+  ],
+
+2. src/style.scss:
+@import "~ng-snotify/styles/material";
+
+3. In angular.json:
+ "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "src/styles.scss"
+            ],
+
+4. in app.component.html:
+<main class="contentArea">
+  <router-outlet></router-outlet>
+  <ng-snotify></ng-snotify>
+</main>
+
+5. in service/component
+constructor(
+    private snotify: SnotifyService
+  ) {
+    this.userInfoService.getUserInfo();
+    this.snotify.setDefaults({
+      global: {
+        newOnTop: false,
+      },
+      toast: {
+        position: SnotifyPosition.rightTop,
+        timeout: 3000,
+        showProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        backdrop: 0.1,
+      },
+      type: {},
+    });
+  }
+
+6. generateTestData() {
+    this.snotify.error/message/async and so on('Fuck');
+
+  }
+examples
+https://artemsky.github.io/ng-snotify/

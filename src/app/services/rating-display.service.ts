@@ -15,11 +15,12 @@ import { RatingDisplayView } from 'src/models/rating-display/rating-display-view
 import { RatingObj } from 'src/models/rating-display/rating-obj';
 import { RatingObjColl } from 'src/models/rating-display/rating-obj-coll';
 import * as defaults from '../../assets/utils/defaults.json';
+import { SlackService } from './shared/slack.service';
 @Injectable({
   providedIn: 'root',
 })
 export class RatingDisplayService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private slackService: SlackService) {}
 
   ratingDisplayView$(questionId: number): Observable<RatingDisplayView> {
     const ratingObjs = this.getRatingCollForRatingQuestion(questionId);
@@ -58,10 +59,7 @@ export class RatingDisplayService {
         };
         return displayRatingView;
       }),
-      catchError((error) => {
-        console.log(error);
-        return throwError(error);
-      })
+      catchError((error) => this.slackService.errorHandling(error))
     );
   }
 

@@ -5,9 +5,11 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
-import { LOG_CHANNEL } from 'consts/urls.consts';
-import { throwError } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { QUESTIONS_TEXT_ANSWERS, REPORT_LOG_CHANNEL } from 'consts/urls.consts';
+import { of, throwError } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
+import { BasicSnackbarService } from 'src/app/basic-snackbar/basic-snackbar.service';
+import { MessageType } from 'src/app/basic-snackbar/models/message-type';
 
 @Injectable({
   providedIn: 'root',
@@ -19,30 +21,61 @@ export class SlackService {
     }),
   };
 
-  constructor(private http: HttpClient, private snotifyService: ) {}
+  constructor(
+    private http: HttpClient,
+    private snackbarService: BasicSnackbarService
+  ) {}
 
   errorHandling(error: HttpErrorResponse) {
-    const message = {
-      fallback: 'This is an error message from Titan Survey',
-      text: error.message,
+    console.log('SLACK ERROR', error);
+    const message = this.getErrorMessage(error);
+    return this.http
+      .post(REPORT_LOG_CHANNEL(), message, {
+        ...this.options,
+        responseType: 'text',
+      })
+      .pipe(
+        tap(() => {
+          this.snackbarService.open('Ошибка Сервера 504', MessageType.WARNING);
+        }),
+        switchMap(() => throwError(error))
+      );
+    // .subscribe((v) => {
+    //   console.log('Slack v', v);
+    // });
+  }
+
+  private getErrorMessage(error: HttpErrorResponse) {
+    const errorMessage = {
+      fallback: 'This is an error message from Titan Report',
+      text: 'Error Message: ' + error.message,
       attachments: [
         {
           author_name: window.location.href,
           color: 'danger',
-          title: 'Error Trace',
+          title: 'Error Sub-Message',
+          text: error.error.message,
+        },
+        {
+          author_name: window.location.href,
+          color: 'danger',
+          title: 'Error Status Text',
           text: error.statusText,
         },
         {
           author_name: window.location.href,
           color: 'danger',
-          title: 'Error Trace',
+          title: 'Error URL',
           text: error.url,
+        },
+        {
+          author_name: window.location.href,
+          color: 'danger',
+          title: 'Error Name',
+          text: error.name,
         },
       ],
     };
-
-    return this.http
-      .post(LOG_CHANNEL(), message, { ...this.options, responseType: 'text' })
-      .pipe(switchMap(() => throwError(error)));
+    return errorMessage;
   }
 }

@@ -1,42 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {
-  BehaviorSubject,
-  Observable,
-  throwError,
-  of,
-  from,
-  combineLatest,
-} from 'rxjs';
-import {
-  catchError,
-  map,
-  tap,
-  finalize,
-  switchMap,
-  shareReplay,
-} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import * as moment from 'moment';
-import { v4 as uuidv4 } from 'uuid';
 
-import { UserInfo } from 'src/models/user/user-info.model';
-import { DeviceDetectorService } from 'ngx-device-detector';
-
-import {
-  IPIFY_IP,
-  GET_USER_INFO_BY_IP,
-  GET_ALL_ANSWERED_USERS,
-  GET_ALL_USERS_GROUPED_BY_LOCATION,
-  SAVE_VISITATION_STATS,
-} from 'consts/urls.consts';
+import { SAVE_VISITATION_STATS } from 'consts/urls.consts';
 import {
   VisitationPageType,
   VisitationStats,
 } from 'src/models/user/visitation-stats';
 import { UserInfoService } from './user-info.service';
+import { SlackService } from '../shared/slack.service';
 
-const formatDisplayDate = 'DD-MM-YY';
-const formatDisplayTime = 'HH:mm';
 declare global {
   interface Window {
     ActiveXObject: any;
@@ -49,7 +24,8 @@ declare global {
 export class VisitationStatsService {
   constructor(
     private readonly http: HttpClient,
-    private userInfoService: UserInfoService
+    private userInfoService: UserInfoService,
+    private slackService: SlackService
   ) {}
 
   saveVisitationStats(visitationStats: VisitationStats) {
@@ -62,12 +38,7 @@ export class VisitationStatsService {
   private postVisitationStats(data: VisitationStats) {
     this.http
       .post<VisitationStats>(SAVE_VISITATION_STATS(), data)
-      .pipe(
-        catchError((error) => {
-          console.log(error);
-          return throwError(error);
-        })
-      )
+      .pipe(catchError((error) => this.slackService.errorHandling(error)))
       .subscribe(console.log);
   }
 

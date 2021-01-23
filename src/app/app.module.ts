@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
@@ -34,6 +34,7 @@ import { ButtonDownComponent } from './button-down/button-down.component';
 import { BasicSnackbarModule } from './basic-snackbar/basic-snackbar.module';
 
 import { IntroModalComponent } from './intro-modal/intro-modal.component';
+import { SlackService } from './services/shared/slack.service';
 
 @NgModule({
   declarations: [

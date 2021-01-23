@@ -81,8 +81,5 @@ export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.visitationStatsService.saveVisitationStats(this.visitationStats);
   }
 
-  //TODO: fix button-down functionality
-  //TODO: finish slack logging
-
   //TODO: check labes in mongodb charts!
 }

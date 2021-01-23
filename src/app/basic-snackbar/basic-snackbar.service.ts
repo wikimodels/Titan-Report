@@ -14,11 +14,11 @@ import { MessageType } from './models/message-type';
 })
 export class BasicSnackbarService {
   //create an instance of MatSnackBar
-  snackBarConfig: MatSnackBarConfig;
   snackBarRef: MatSnackBarRef<any>;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
-  snackBarAutoHide = '3000';
+  private snackBarConfig: MatSnackBarConfig;
+  private horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  private verticalPosition: MatSnackBarVerticalPosition = 'top';
+  private snackBarAutoHide = '3000';
   constructor(private snackBar: MatSnackBar) {}
 
   open(message: string, type: MessageType) {

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 
@@ -14,12 +18,13 @@ import {
 
 import { getPristionQuestionnaire } from 'consts/pristin-questionnaire';
 import { SlackMessage } from 'src/models/slack-message';
+import { SlackService } from './shared/slack.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionnaireService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private slackService: SlackService) {}
 
   questionnaire$ = this.getQuestionnaire();
 
@@ -29,10 +34,7 @@ export class QuestionnaireService {
       .get<Questionnaire>(GET_QUESTIONNAIRE_BY_QID(quesionnaireId))
       .pipe(
         shareReplay(1),
-        catchError((error) => {
-          console.log(error);
-          return throwError(error);
-        })
+        catchError((error) => this.slackService.errorHandling(error))
       );
   }
 
@@ -49,6 +51,9 @@ export class QuestionnaireService {
 
   uploadTestQuestionnaire() {
     const q = getPristionQuestionnaire();
-    this.http.post(UPLOAD_TEST_QUESTIONNAIRE(), q).subscribe(console.log);
+    this.http
+      .post(UPLOAD_TEST_QUESTIONNAIRE(), q)
+      .pipe(catchError((error) => this.slackService.errorHandling(error)))
+      .subscribe(console.log);
   }
 }

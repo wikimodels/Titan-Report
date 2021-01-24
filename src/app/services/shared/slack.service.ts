@@ -40,14 +40,12 @@ export class SlackService {
         }),
         switchMap(() => throwError(error))
       );
-    // .subscribe((v) => {
-    //   console.log('Slack v', v);
-    // });
   }
 
   private getErrorMessage(error: HttpErrorResponse) {
     const errorMessage = {
       fallback: 'This is an error message from Titan Report',
+      //username: '',
       text: 'Error Message: ' + error.message,
       attachments: [
         {

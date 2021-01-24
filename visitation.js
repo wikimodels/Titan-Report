@@ -64,3 +64,25 @@ db.answers.aggregate([
     },
   },
 ]);
+db.visitation_stats.aggregate([
+  {
+    $project: {
+      ip: "$userInfo.ip",
+      city: "$userInfo.city",
+      difference: {
+        $divide: [{ $subtract: ["$leave_date", "$enter_date"] }, 1000],
+      },
+      //hour: {$hour: { $toDate: { $multiply: ["$enter_date", 1] } }}
+    },
+  },
+]);
+db.visitation_stats.aggregate([
+  {
+    $project: {
+      ip: "$userInfo.ip",
+      city: "$userInfo.city",
+      date: { $toDate: { $multiply: ["$leave_date", 1] } },
+      hour: { $hour: { $toDate: { $multiply: ["$enter_date", 1] } } },
+    },
+  },
+]);

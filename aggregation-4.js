@@ -65,8 +65,10 @@ db.answers.aggregate([
 db.visitation_stats.aggregate([
   {
     $project: {
-      ip: "$user",
-      enter_date: { $toDate: { $multiply: ["$enter_date", 1] } },
+      ip: "$userInfo.ip",
+      city: "$userInfo.city",
+      date: { $toDate: { $multiply: ["$enter_date", 1] } },
+      hour: { $hour: { $toDate: { $multiply: ["$enter_date", 1] } } },
     },
   },
 ]);

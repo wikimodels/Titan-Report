@@ -61,3 +61,12 @@ db.answers.aggregate([
     },
   },
 ]);
+
+db.visitation_stats.aggregate([
+  {
+    $project: {
+      ip: "$user",
+      enter_date: { $toDate: { $multiply: ["$enter_date", 1] } },
+    },
+  },
+]);

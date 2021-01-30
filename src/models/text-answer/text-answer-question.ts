@@ -3,5 +3,6 @@ export interface TextAnswerQuestion {
   country: string;
   city: string;
   question_text_answer: string;
-  submission_date?: string;
+  creation_date_string?: string;
+  creation_date?: number;
 }

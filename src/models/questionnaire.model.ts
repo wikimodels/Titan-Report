@@ -13,7 +13,7 @@ export interface Questionnaire {
   creation_date?: string;
   modification_date?: string;
   first_question_url?: string;
-  submission_date?: string;
+  creation_date_string?: string;
 }
 
 export interface Question {

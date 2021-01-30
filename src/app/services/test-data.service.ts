@@ -49,7 +49,7 @@ export class TestDataService {
             let questionnaire: Questionnaire = {};
             questionnaire.user_info = userInfo;
             questionnaire.questions = this.supplyQuestionnairWithAnswers();
-            questionnaire.submission_date = moment(
+            questionnaire.creation_date = moment(
               this.momentRandom(moment(this.endDate), this.startDate)
             ).toISOString();
 

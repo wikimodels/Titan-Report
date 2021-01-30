@@ -59,7 +59,7 @@ export class TextAnswerService {
         catchError((error) => this.slackService.errorHandling(error)),
         map((value: TextAnswerQuestion[]) => {
           value.forEach((v) => {
-            v.submission_date = moment(v.submission_date)
+            v.creation_date_string = moment(v.creation_date)
               .locale('ru')
               .format(formatDisplayDate);
           });

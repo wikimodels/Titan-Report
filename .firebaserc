@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "titan-report"
+  },
+  "targets": {
+    "titan-report": {
+      "hosting": {
+        "titan-report": [
+          "titan-report"
+        ]
+      }
+    }
   }
 }

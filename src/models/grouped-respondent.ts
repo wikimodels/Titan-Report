@@ -6,7 +6,7 @@ export interface GroupedRespondent {
   country: string;
   city: string;
   count: number;
-  flagUrl: string;
+  flag_url: string;
 }
 
 export interface GroupedRespondentsApi {

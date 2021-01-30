@@ -8,6 +8,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 
 import { IPIFY_IP, GET_USER_INFO_BY_IP } from 'consts/urls.consts';
 import { SlackService } from '../shared/slack.service';
+import { DelayedRetriesService } from '../shared/delayed-retries.service';
 
 declare global {
   interface Window {
@@ -22,7 +23,8 @@ export class UserInfoService {
   constructor(
     private readonly http: HttpClient,
     private deviceService: DeviceDetectorService,
-    private slackService: SlackService
+    private slackService: SlackService,
+    private delayedRetriesService: DelayedRetriesService
   ) {}
 
   private _userInfoSubj = new BehaviorSubject<UserInfo>(null);
@@ -36,20 +38,24 @@ export class UserInfoService {
   }
 
   getUserInfo() {
-    this.http
+    return this.http
       .get(IPIFY_IP())
       .pipe(
+        this.delayedRetriesService.retryWithoutBackoff(3),
+        catchError((error) => this.slackService.errorHandling(error)),
         map((value) => {
           const ip = value['ip'].split(',')[0];
           return ip;
         }),
         switchMap((value) => {
-          return this.http
-            .get<UserInfo>(GET_USER_INFO_BY_IP(value))
-            .pipe(shareReplay(1));
+          return this.http.get<UserInfo>(GET_USER_INFO_BY_IP(value)).pipe(
+            this.delayedRetriesService.retryWithoutBackoff(5),
+            catchError((error) => this.slackService.errorHandling(error))
+          );
         }),
         map((value: UserInfo) => {
           const deviceInfo = this.deviceService.getDeviceInfo();
+          console.log('UI', deviceInfo);
           value.location = {
             type: 'Point',
             coordinates: [value.lon, value.lat],
@@ -58,9 +64,7 @@ export class UserInfoService {
           value.os_version = deviceInfo.os_version;
           value.browser = deviceInfo.browser;
           return value;
-        }),
-        shareReplay(1),
-        catchError((error) => this.slackService.errorHandling(error))
+        })
       )
       .subscribe((value: UserInfo) => {
         this.setUserInfoSubj(value);

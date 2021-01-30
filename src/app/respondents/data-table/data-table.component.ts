@@ -71,6 +71,7 @@ export class DataTableComponent implements OnInit, AfterViewInit {
       )
       .subscribe((value: GroupedRespondentsApi) => {
         setTimeout(() => {
+          console.log('RES', value.groupedRespondents);
           this.groupedRespondents = value.groupedRespondents;
           this.resultsLength = value.groupedRespondentsCount;
         }, 0);

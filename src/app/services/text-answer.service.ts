@@ -6,17 +6,22 @@ import {
   PAGED_QUESTIONS_TEXT_ANSWERS,
   TOTAL_COUNT_OF_ANSWERS,
 } from 'consts/urls.consts';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { TextAnswerQuestion } from 'src/models/text-answer/text-answer-question';
 import { SlackService } from './shared/slack.service';
+import { DelayedRetriesService } from './shared/delayed-retries.service';
 
 const formatDisplayDate = 'DD MMM YYYY HH:mm';
 @Injectable({
   providedIn: 'root',
 })
 export class TextAnswerService {
-  constructor(private http: HttpClient, private slackService: SlackService) {}
+  constructor(
+    private http: HttpClient,
+    private slackService: SlackService,
+    private delayedRetriesService: DelayedRetriesService
+  ) {}
 
   // Collection Count
   _collectionCountSub = new BehaviorSubject<number>(0);
@@ -50,7 +55,8 @@ export class TextAnswerService {
         PAGED_QUESTIONS_TEXT_ANSWERS(questionIndex, skip, limit)
       )
       .pipe(
-        shareReplay(1),
+        this.delayedRetriesService.retryWithoutBackoff(5),
+        catchError((error) => this.slackService.errorHandling(error)),
         map((value: TextAnswerQuestion[]) => {
           value.forEach((v) => {
             v.submission_date = moment(v.submission_date)
@@ -58,8 +64,7 @@ export class TextAnswerService {
               .format(formatDisplayDate);
           });
           return value;
-        }),
-        catchError((error) => this.slackService.errorHandling(error))
+        })
       )
       .subscribe((value: TextAnswerQuestion[]) => {
         this.setTextAnswerQuestionSub(value);
@@ -70,10 +75,11 @@ export class TextAnswerService {
     this.http
       .get<number>(TOTAL_COUNT_OF_ANSWERS())
       .pipe(
-        shareReplay(1),
-        catchError((error) => this.slackService.errorHandling(error))
+        this.delayedRetriesService.retryWithoutBackoff(5),
+        catchError((error) => this.slackService.errorHandling(error)),
+        shareReplay(1)
       )
-      .subscribe((value) => {
+      .subscribe((value: number) => {
         this.setCollectionCountSub(value);
       });
   }

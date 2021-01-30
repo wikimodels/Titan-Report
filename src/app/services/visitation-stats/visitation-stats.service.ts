@@ -29,7 +29,7 @@ export class VisitationStatsService {
   ) {}
 
   saveVisitationStats(visitationStats: VisitationStats) {
-    visitationStats.userInfo = this.userInfoService.getUserInfoSubj();
+    visitationStats.user_info = this.userInfoService.getUserInfoSubj();
     visitationStats.leave_date = Date.now();
     visitationStats.stay_duraion = this.calculateStayDuration(visitationStats);
     this.postVisitationStats(visitationStats);

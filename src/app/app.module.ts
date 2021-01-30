@@ -62,9 +62,11 @@ import { SlackService } from './services/shared/slack.service';
     FormsModule,
 
     CommonModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserModule,
-    BrowserModule,
-    FlexLayoutModule,
+    FlexLayoutModule.withConfig({
+      ssrObserveBreakpoints: ['xs', 'lt-md', 'lt-lg', 'gt-md'],
+    }),
     HttpClientModule,
     AppRoutingModule,
     AppMaterialModule,

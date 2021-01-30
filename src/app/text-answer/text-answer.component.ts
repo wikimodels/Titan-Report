@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Question } from 'src/models/questionnaire.model';
 import { TextAnswerQuestion } from 'src/models/text-answer/text-answer-question';
@@ -13,6 +13,7 @@ import * as defaults from '../../assets/utils/defaults.json';
   selector: 'app-text-answer',
   templateUrl: './text-answer.component.html',
   styleUrls: ['./text-answer.component.css'],
+  providers: [TextAnswerService],
 })
 export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
   question$: Observable<Question>;
@@ -32,9 +33,11 @@ export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
     private textAnswerService: TextAnswerService,
     private questionnaireService: QuestionnaireService,
     private route: ActivatedRoute,
-    //private scrollToTopService: ScrollTopService,
+    private router: Router,
     private visitationStatsService: VisitationStatsService
-  ) {}
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit(): void {
     this.question$ = this.questionnaireService.question$(this.questionId);

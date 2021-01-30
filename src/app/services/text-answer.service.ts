@@ -14,7 +14,7 @@ import { DelayedRetriesService } from './shared/delayed-retries.service';
 
 const formatDisplayDate = 'DD MMM YYYY HH:mm';
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'any',
 })
 export class TextAnswerService {
   constructor(
@@ -25,7 +25,6 @@ export class TextAnswerService {
 
   // Collection Count
   _collectionCountSub = new BehaviorSubject<number>(0);
-
   collectionCountSub$ = this._collectionCountSub.asObservable();
 
   setCollectionCountSub(value: number) {

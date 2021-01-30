@@ -1,5 +1,5 @@
 export interface TextAnswerQuestion {
-  flagUrl: string;
+  flag_url: string;
   country: string;
   city: string;
   question_text_answer: string;

@@ -17,7 +17,6 @@ import {
 } from 'consts/urls.consts';
 
 import { getPristionQuestionnaire } from 'consts/pristin-questionnaire';
-import { SlackMessage } from 'src/models/slack-message';
 import { SlackService } from './shared/slack.service';
 
 @Injectable({

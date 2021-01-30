@@ -7,11 +7,13 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 })
 export class ButtonDownComponent implements OnInit {
   constructor() {}
+  buttonClass = 'button-pulsar';
   @Input() elementHeight: number;
 
   ngOnInit(): void {}
 
   goToBottom() {
+    this.buttonClass = '';
     this.elementHeight = this.elementHeight + 4000;
     window.scrollTo({ top: this.elementHeight, behavior: 'smooth' });
   }

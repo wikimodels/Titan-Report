@@ -51,8 +51,7 @@ export class AppComponent implements OnInit {
   }
 
   generateTestData() {
-    this.snackbarService.open('Fuck', MessageType.WARNING);
-    //this.testS.getUserInfo();
+    this.testS.getUserInfo();
   }
   uploadTestQuestionnaire() {
     this.questionnaireService.uploadTestQuestionnaire();
@@ -70,3 +69,5 @@ export class AppComponent implements OnInit {
     });
   }
 }
+//TODO: Jumping Button
+//TODO: CSS for Landscape of Galaxy S 9+

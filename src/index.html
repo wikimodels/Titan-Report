@@ -3,52 +3,116 @@
   <head>
     <meta charset="utf-8" />
     <title>Titan Report</title>
+    <!-- <style type="text/css">
+      app-root:empty::after {
+        content: "Loading...";
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        font-size: 20px;
+        transform: translate(-50%, -50%);
+      }
+    </style> -->
+    <style>
+      .app-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -65px;
+        margin-left: -65px;
+      }
+
+      .fadein {
+        -webkit-animation: fadein 1000ms;
+        /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 1000ms;
+        /* Firefox < 16 */
+        -ms-animation: fadein 1000ms;
+        /* Internet Explorer */
+        -o-animation: fadein 1000ms;
+        /* Opera < 12.1 */
+        animation: fadein 1000ms;
+      }
+
+      @keyframes fadein {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      /* Firefox < 16 */
+
+      @-moz-keyframes fadein {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      /* Safari, Chrome and Opera > 12.1 */
+
+      @-webkit-keyframes fadein {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      /* Internet Explorer */
+
+      @-ms-keyframes fadein {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
     <base href="/" />
-    <meta
-      data-rh="true"
-      name="viewport"
-      content="width=device-width,minimum-scale=1,initial-scale=1"
-    />
-    <meta
-      property="og:title"
-      content="Результаты Опроса &#8220;Тренировки и Здоровье Позвоночника и Суставов&#8221;"
-    />
-    <meta
-      property="og:description"
-      content="Сайт содержит подробный анализ данных, собранных в результате опроса"
-    />
-    <meta property="og:site_name" content="Titan Survey" />
-    <meta
-      property="og:image"
-      content="https://titan-report.web.app/assets/images/open-graph.jpg"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://titan-report.web.app" />
-    <meta
-      data-rh="true"
-      name="parsely-link"
-      content="https://titan-report.web.app"
-    />
-    <meta property="og:locale" content="ru_RU" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- <link
+      rel="stylesheet"
+      onload="this.onload=null;this.removeAttribute('media');"
+      href="styles.css"
+    /> -->
     <link
+      rel="stylesheet"
+      media="print"
+      onload="this.onload=null;this.removeAttribute('media');"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      media="print"
+      onload="this.onload=null;this.removeAttribute('media');"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- <link
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
       rel="stylesheet"
     />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    /> -->
   </head>
+
   <body class="mat-typography" appScrollListener>
-    <app-root></app-root>
+    <app-root>
+      <div class="app-loading fadein">
+        <img
+          class="intro-logo"
+          src="data:image/png;base64,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"
+          alt="wm-logo"
+        />
+      </div>
+    </app-root>
   </body>
 </html>

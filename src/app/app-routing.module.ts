@@ -13,6 +13,7 @@ import { RespondentsComponent } from './respondents/respondents.component';
 import { RatingComponent } from './rating/rating.component';
 import { TextAnswerComponent } from './text-answer/text-answer.component';
 import { ChartsQuestionComponent } from './charts-question/charts-question.component';
+import { OpenGraphDataComponent } from './open-graph-data/open-graph-data.component';
 
 const routes: Routes = [
   {
@@ -40,15 +41,19 @@ const routes: Routes = [
     path: QuestionType.TEXT + '/:question_id',
     component: TextAnswerComponent,
   },
+  {
+    path: 'data',
+    component: OpenGraphDataComponent,
+  },
   { path: '**', redirectTo: 'menu' },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'top',
-    initialNavigation: 'enabled'
-}),
+      scrollPositionRestoration: 'top',
+      initialNavigation: 'enabled',
+    }),
   ],
   exports: [RouterModule],
 })

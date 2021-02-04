@@ -1,13 +1,14 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { Question } from 'src/models/questionnaire.model';
+import { OpenGraph, Question } from 'src/models/questionnaire.model';
 import { TextAnswerQuestion } from 'src/models/text-answer/text-answer-question';
 import { VisitationPageType } from 'src/models/user/visitation-stats';
 import { QuestionnaireService } from '../services/questionnaire.service';
 import { TextAnswerService } from '../services/text-answer.service';
 import { VisitationStatsService } from '../services/visitation-stats/visitation-stats.service';
 import * as defaults from '../../assets/utils/defaults.json';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-text-answer',
@@ -16,8 +17,10 @@ import * as defaults from '../../assets/utils/defaults.json';
   providers: [TextAnswerService],
 })
 export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
-  question$: Observable<Question>;
+  question: Question;
   textAnswerQuestions: TextAnswerQuestion[] = [];
+  openGraph: OpenGraph;
+  questionSub: Subscription;
   skip = 0;
   limit = 20;
   elementHeight = defaults.textElementHeight;
@@ -34,13 +37,29 @@ export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
     private questionnaireService: QuestionnaireService,
     private route: ActivatedRoute,
     private router: Router,
-    private visitationStatsService: VisitationStatsService
+    private visitationStatsService: VisitationStatsService,
+    private title: Title,
+    private meta: Meta
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
-    this.question$ = this.questionnaireService.question$(this.questionId);
+    this.questionSub = this.questionnaireService
+      .question$(this.questionId)
+      .subscribe((value) => {
+        this.question = value;
+        if (this.question.open_graph) {
+          this.openGraph = value.open_graph;
+          this.title.setTitle(this.openGraph.title);
+          this.meta.addTags([
+            { name: 'og:title', content: this.openGraph.title },
+            { name: 'og:description', content: this.openGraph.description },
+            { name: 'og:image', content: this.openGraph.image },
+            { name: 'og:url', content: this.openGraph.site_url },
+          ]);
+        }
+      });
     this.textAnswerService.getCollectionCount();
     this.textAnswerService.getPagedQuestions(
       this.questionId,
@@ -79,6 +98,7 @@ export class TextAnswerComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   ngOnDestroy() {
+    this.questionSub.unsubscribe();
     this.totalCountSub.unsubscribe();
     this.textAnswerSub.unsubscribe();
     this.visitationStatsService.saveVisitationStats(this.visitationStats);

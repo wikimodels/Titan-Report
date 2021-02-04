@@ -1,0 +1,63 @@
+/* CHARTS MOBILE PORTRAIT */
+@media only screen and (min-device-width: 320px) and (max-device-width: 412px) {
+  .chart {
+    background: #ffffff;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+      0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+    width: 100vw;
+    height: 70vh;
+  }
+}
+
+/* CHARTS MOBILE LANDSCAPE */
+@media only screen and (min-device-width: 320px) and (max-device-width: 959px) {
+  .standart-chart,
+  .map-chart {
+    background: #ffffff;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+      0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@media only screen and (min-device-width: 960px) and (max-device-width: 1279px) {
+  .standart-chart,
+  .map-chart {
+    background: #ffffff;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+      0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+    width: 80vw;
+    height: 40vh;
+  }
+}
+
+@media only screen and (min-device-width: 1280px) and (max-device-width: 5000px) {
+  .standart-chart {
+    background: #ffffff;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+      0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+    width: 44vw;
+    height: 70vh;
+    margin-bottom: 20px;
+  }
+
+  .map-chart {
+    background: #ffffff;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+      0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+    width: 90vw;
+    height: 90vh;
+    margin-bottom: 20px;
+  }
+}

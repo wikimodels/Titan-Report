@@ -1,4 +1,14 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+} from '@angular/core';
+import { GlobalObjectService } from '../services/shared/global-object.service';
 
 @Component({
   selector: 'app-button-down',
@@ -6,8 +16,14 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./button-down.component.css'],
 })
 export class ButtonDownComponent implements OnInit {
-  constructor() {}
-  buttonClass = 'button-pulsar';
+  windowRef: any;
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    windowService: GlobalObjectService
+  ) {
+    this.windowRef = windowService.getWindow();
+  }
+  buttonClass = 'glow-on-hover';
   @Input() elementHeight: number;
 
   ngOnInit(): void {}
@@ -15,6 +31,8 @@ export class ButtonDownComponent implements OnInit {
   goToBottom() {
     this.buttonClass = '';
     this.elementHeight = this.elementHeight + 4000;
-    window.scrollTo({ top: this.elementHeight, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      this.windowRef.scrollTo({ top: this.elementHeight, behavior: 'smooth' });
+    }
   }
 }

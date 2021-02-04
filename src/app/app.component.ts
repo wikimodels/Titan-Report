@@ -1,6 +1,6 @@
 import { MatDialog } from '@angular/material/dialog';
 
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { VisitationPageType } from 'src/models/user/visitation-stats';
@@ -11,7 +11,7 @@ import { VisitationStatsService } from './services/visitation-stats/visitation-s
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 import { BasicSnackbarService } from './basic-snackbar/basic-snackbar.service';
-import { MessageType } from './basic-snackbar/models/message-type';
+
 import { IntroModalComponent } from './intro-modal/intro-modal.component';
 
 @Component({
@@ -19,37 +19,34 @@ import { IntroModalComponent } from './intro-modal/intro-modal.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'Titan Report';
-
   visitationStats = this.visitationStatsService.setVisitationStats(
     0,
     VisitationPageType.MAIN
   );
   constructor(
-    readonly dialog: MatDialog,
+    //readonly dialog: MatDialog,
     private questionnaireService: QuestionnaireService,
     private testS: TestDataService,
     private visitationStatsService: VisitationStatsService,
     private cookieService: CookieService,
     private userInfoService: UserInfoService,
-
-    private snackbarService: BasicSnackbarService,
     private deviceDetectorService: DeviceDetectorService
-  ) {
-    this.userInfoService.getUserInfo();
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.userInfoService.getUserInfo();
     let intro = this.cookieService.get('intro');
     if (
       (this.deviceDetectorService.isMobile() && intro === '') ||
       intro === 'false'
     ) {
-      this.openDialog();
+      //this.openDialog();
     }
   }
 
+  ngAfterViewInit() {}
   generateTestData() {
     this.testS.getUserInfo();
   }
@@ -57,17 +54,15 @@ export class AppComponent implements OnInit {
     this.questionnaireService.uploadTestQuestionnaire();
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(IntroModalComponent, {
-      width: '90%',
-      data: {},
-      panelClass: 'custom-modalbox',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      this.cookieService.set('intro', result);
-      console.log(result);
-    });
+    // const dialogRef = this.dialog.open(IntroModalComponent, {
+    //   width: '90%',
+    //   data: {},
+    //   panelClass: 'custom-modalbox',
+    // });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   this.cookieService.set('intro', result);
+    //   console.log(result);
+    // });
   }
 }
-//TODO: Jumping Button
-//TODO: CSS for Landscape of Galaxy S 9+
+//TODO: Write SW to cash stylesheets

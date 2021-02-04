@@ -1,3 +1,12 @@
-.rating-table {
-  width: 100%;
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 959px) {
+  .rating-table {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-device-width: 959px) and (max-device-width: 1279px) {
+  .rating-table {
+    width: 80%;
+  }
 }

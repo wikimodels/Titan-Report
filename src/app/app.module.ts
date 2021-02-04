@@ -36,6 +36,8 @@ import { BasicSnackbarModule } from './basic-snackbar/basic-snackbar.module';
 import { IntroModalComponent } from './intro-modal/intro-modal.component';
 import { SlackService } from './services/shared/slack.service';
 
+import { OpenGraphDataComponent } from './open-graph-data/open-graph-data.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +58,7 @@ import { SlackService } from './services/shared/slack.service';
     TooltipComponent,
     ButtonDownComponent,
     IntroModalComponent,
+    OpenGraphDataComponent,
   ],
   imports: [
     NgbModule,

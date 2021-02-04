@@ -1,9 +1,11 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CHARTS_QUESTION, RESPONDENTS } from 'consts/routes.consts';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
+  OpenGraph,
   Question,
   Questionnaire,
   QuestionType,
@@ -16,21 +18,36 @@ import { LoadingService } from '../services/shared/loading.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
-export class MenuComponent implements OnInit, AfterViewInit {
+export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private questionnaireService: QuestionnaireService,
     private router: Router,
     private cookieService: CookieService,
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    private title: Title,
+    private meta: Meta
   ) {}
 
-  questionnaire$: Observable<Questionnaire>;
+  questionnaire: Questionnaire;
+  openGraph: OpenGraph;
+  sub: Subscription;
+
   ngOnInit(): void {
     this.loadingService.loadingOn();
-    this.questionnaire$ = this.questionnaireService.questionnaire$;
+    this.sub = this.questionnaireService.questionnaire$.subscribe((value) => {
+      console.log('Questionnaire', value);
+      this.questionnaire = value;
+      this.openGraph = value.menu.open_graph;
+      this.title.setTitle(this.openGraph.title);
+      // this.meta.addTags([
+      //   { name: 'og:title', content: this.openGraph.title },
+      //   { name: 'og:description', content: this.openGraph.description },
+      //   { name: 'og:image', content: this.openGraph.image },
+      //   { name: 'og:url', content: this.openGraph.site_url },
+      // ]);
+    });
   }
   ngAfterViewInit(): void {
-    window.scrollTo({ top: +this.cookieService.get('top') });
     setTimeout(() => {
       this.loadingService.loadingOff();
     }, 0);
@@ -49,13 +66,13 @@ export class MenuComponent implements OnInit, AfterViewInit {
         url = CHARTS_QUESTION + '/' + question.question_id;
         break;
     }
-    // console.log('SCROLL', window.scrollY);
-    //this.cookieService.set('top', window.scrollY.toString());
     this.router.navigate([url]);
   }
 
   goToRespondents() {
-    this.cookieService.set('top', window.scrollY.toString());
     this.router.navigate([RESPONDENTS]);
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

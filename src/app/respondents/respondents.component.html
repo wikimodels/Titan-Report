@@ -1,7 +1,6 @@
 <div class="screen">
-  <ng-container *ngIf="questionnaire$ | async as questionnaire">
+  <ng-container *ngIf="questionnaire">
     <app-nav-bar [respondents]="questionnaire.respondents"></app-nav-bar>
-
     <div
       fxLayout="column"
       fxLayoutAlign="center center"

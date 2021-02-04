@@ -5,6 +5,7 @@ export interface QuestionnaireData {
   data?: { title: string; subtitile: string };
 }
 export interface Questionnaire {
+  menu?: Menu;
   questionnaire_id?: string;
   questionnaire_name?: string;
   user_info?: UserInfo;
@@ -14,10 +15,13 @@ export interface Questionnaire {
   modification_date?: string;
   first_question_url?: string;
   creation_date_string?: string;
+  openGraphs?: OpenGraph[];
 }
 
 export interface Question {
   question_id: number;
+  page_name: string;
+  open_graph?: OpenGraph;
   question_type: QuestionType;
   question_charts?: Chart[];
   question_text: string;
@@ -42,9 +46,11 @@ export interface Answer {
 }
 
 export interface Respondents {
+  page_name: string;
   respondents_header?: string;
   respondents_subheader: string;
   respondents_charts?: Chart[];
+  open_graph?: OpenGraph;
 }
 export interface Chart {
   id: string;
@@ -65,4 +71,19 @@ export enum QuestionType {
 export enum ChartType {
   STANDART = 'standart-chart',
   MAP = 'map-chart',
+}
+
+export interface OpenGraph {
+  title?: string;
+  image?: string;
+  locale?: string;
+  page_name?: string;
+  description?: string;
+  type?: string;
+  site_url?: string;
+}
+
+export interface Menu {
+  page_name?: string;
+  open_graph?: OpenGraph;
 }

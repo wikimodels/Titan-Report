@@ -1,5 +1,5 @@
 <div class="screen">
-  <ng-container *ngIf="question$ | async as question">
+  <ng-container *ngIf="question">
     <app-nav-bar [question]="question"></app-nav-bar>
   </ng-container>
 
@@ -21,6 +21,8 @@
       [textAnswerQuestion]="answer"
       [index]="collectionTotalCount - i - 1"
     ></app-text-answer-card>
-    <app-button-down [elementHeight]="elementHeight"></app-button-down>
+    <ng-container *ngIf="collectionTotalCount > 50"
+      ><app-button-down [elementHeight]="elementHeight"></app-button-down
+    ></ng-container>
   </div>
 </div>

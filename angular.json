@@ -176,9 +176,7 @@
           "options": {
             "browserTarget": "titan-report:build:production",
             "serverTarget": "titan-report:server:production",
-            "routes": [
-              "/"
-            ]
+            "routesFile": "prerender.txt"
           },
           "configurations": {
             "production": {}

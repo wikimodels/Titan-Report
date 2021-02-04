@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { OpenGraph } from 'src/models/questionnaire.model';
 import { VisitationPageType } from 'src/models/user/visitation-stats';
 import { RatingDisplayService } from '../services/rating-display.service';
 import { VisitationStatsService } from '../services/visitation-stats/visitation-stats.service';
@@ -14,10 +16,14 @@ export class RatingComponent implements OnInit, OnDestroy {
   constructor(
     public ratingService: RatingDisplayService,
     private route: ActivatedRoute,
-    private visitationStatsService: VisitationStatsService
+    private visitationStatsService: VisitationStatsService,
+    private title: Title,
+    private meta: Meta
   ) {}
 
-  ratingDisplayView$: Observable<any>;
+  ratingDisplayView: any;
+  sub: Subscription;
+  openGraph: OpenGraph;
   questionId = +this.route.snapshot.params['question_id'];
   visitationStats = this.visitationStatsService.setVisitationStats(
     this.questionId,
@@ -25,11 +31,24 @@ export class RatingComponent implements OnInit, OnDestroy {
   );
 
   ngOnInit(): void {
-    this.ratingDisplayView$ = this.ratingService.ratingDisplayView$(
-      this.questionId
-    );
+    this.sub = this.ratingService
+      .ratingDisplayView$(this.questionId)
+      .subscribe((value) => {
+        this.ratingDisplayView = value;
+        if (this.ratingDisplayView.question.open_grpah) {
+          this.openGraph = this.ratingDisplayView.question.open_grpah;
+          this.title.setTitle(this.openGraph.title);
+          this.meta.addTags([
+            { name: 'og:title', content: this.openGraph.title },
+            { name: 'og:description', content: this.openGraph.description },
+            { name: 'og:image', content: this.openGraph.image },
+            { name: 'og:url', content: this.openGraph.site_url },
+          ]);
+        }
+      });
   }
   ngOnDestroy() {
     this.visitationStatsService.saveVisitationStats(this.visitationStats);
+    this.sub.unsubscribe();
   }
 }

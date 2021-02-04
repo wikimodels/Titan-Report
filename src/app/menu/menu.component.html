@@ -39,7 +39,7 @@
   </div>
 
   <!-- LIST -->
-  <div *ngIf="questionnaire$ | async as questionnaire" class="list-container">
+  <div *ngIf="questionnaire" class="list-container">
     <mat-list>
       <mat-list-item matRipple (click)="goToRespondents()" class="menu-item">
         <h3 matLine>

@@ -2,3 +2,25 @@
   width: 100%;
   margin-bottom: 20px;
 }
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 959px) {
+  .data-table {
+    width: 100vw;
+  }
+}
+
+@media only screen and (min-device-width: 959px) and (max-device-width: 1279px) {
+  .data-table {
+    width: 80vw;
+  }
+}
+
+@media only screen and (min-device-width: 1280px) and (max-device-width: 5000px) {
+  .data-table {
+    width: 90vw;
+  }
+  .table-container {
+    margin-bottom: 30px;
+  }
+}

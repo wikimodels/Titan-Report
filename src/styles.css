@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./media-queries/320px-1279px.css";
-@import "./media-queries/1280px-5000px.css";
-@import "./media-queries/fonts.css";
-@import "./media-queries/charts.css";
-@import "./app/basic-snackbar/basic-snackbar.component.css";
+/* @import "./media-queries/320px-1279px.css"; */
+/* @import "./media-queries/1280px-5000px.css"; */
+/* @import "./media-queries/fonts.css"; */
+/* @import "./media-queries/charts.css"; */
+/*@import "./app/basic-snackbar/basic-snackbar.component.css";*/
 
 html,
 body {
@@ -51,11 +51,36 @@ button.active:focus {
   vertical-align: middle;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 766px) {
-  .tooltip {
-    position: fixed;
-    outline: none;
-    right: 40px;
-    bottom: 20px;
+@media only screen and (min-device-width: 320px) and (max-device-width: 959px) {
+  /* Styles */
+
+  .list-container {
+    padding-bottom: 30px;
+  }
+
+  .screen {
+    padding-bottom: 30px;
+  }
+}
+
+@media only screen and (min-device-width: 959px) and (max-device-width: 1279px) {
+  .list-container {
+    padding-bottom: 30px;
+  }
+
+  .screen {
+    padding-bottom: 30px;
+  }
+}
+
+@media only screen and (min-device-width: 1280px) and (max-device-width: 5000px) {
+  /* Styles */
+  .screen {
+    width: 90vw;
+    margin: 0 auto;
+    padding-bottom: 70px;
+  }
+  .header-container {
+    width: 90vw;
   }
 }

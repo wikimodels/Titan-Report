@@ -1,5 +1,5 @@
 <div class="screen" #charts>
-  <ng-container *ngIf="question$ | async as question">
+  <ng-container *ngIf="question">
     <div fxLayout="column" fxLayoutAlign="center center">
       <app-nav-bar [question]="question"></app-nav-bar>
     </div>
@@ -20,6 +20,8 @@
         </app-mongodb-chart>
       </div>
     </ng-container>
-    <app-button-down [elementHeight]="elementHeight"></app-button-down>
+    <ng-container *ngIf="deviceDetectorService.isMobile()"
+      ><app-button-down [elementHeight]="elementHeight"></app-button-down
+    ></ng-container>
   </ng-container>
 </div>

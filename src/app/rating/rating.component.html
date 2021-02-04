@@ -1,5 +1,5 @@
 <div class="screen">
-  <ng-container *ngIf="this.ratingDisplayView$ | async as ratingDisplayView">
+  <ng-container *ngIf="ratingDisplayView">
     <ng-container *ngIf="ratingDisplayView.question !== null">
       <app-nav-bar [question]="ratingDisplayView.question"></app-nav-bar>
     </ng-container>
